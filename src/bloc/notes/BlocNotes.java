@@ -5,11 +5,14 @@
 package bloc.notes;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
 
 /**
@@ -26,17 +29,8 @@ public class BlocNotes {
         gui.setVisible(true);
     }
 
-    public static void openFile() {
-        String file = null;
-        while (!gui.get_file_chooser_opened()){
-            try {
-                Thread.sleep(10);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-        gui.set_file_chooser_opened(false);
-        file = gui.get_file_name();
+    public static void openFile(String file) {
+        System.out.print(file);
         //create a File object with file name
         File f = new File(file);
         //create a FileReader object
@@ -69,6 +63,38 @@ public class BlocNotes {
         //set the text in the text area
         gui.set_text(text);
     }
+
+    public static void save_existing_file(String text, String file_name) {
+        //create a File object with file name
+        File f = new File(file_name);
+        //create a FileWriter object
+        FileOutputStream fos = null;
+        try {
+            fos = new FileOutputStream(f);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        //create a BufferedWriter object
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
+        //write the text in the file
+        try {
+            bw.write(text);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //close the file
+        try {
+            bw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        gui.set_text(text);
+    }
+
+
+
+
+        
 
     
 

@@ -4,9 +4,10 @@
  */
 package bloc.notes;
 
-import java.io.IOException;
-
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.WindowConstants;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -16,22 +17,13 @@ public class GUI extends javax.swing.JFrame {
     private String file_name;
     private String file_text;
     private boolean not_saved;
-    private boolean file_chooser_opened;
     /**
      * Creates new form GUI
      */
     public GUI() {
         initComponents();
-        this.file_chooser_opened = false;
     }
     
-    public boolean get_file_chooser_opened(){
-        return file_chooser_opened;
-    }
-    
-    public void set_file_chooser_opened(boolean opened){
-        this.file_chooser_opened = opened;
-    } 
     
     public String get_file_name(){
         return this.file_name;
@@ -52,6 +44,8 @@ public class GUI extends javax.swing.JFrame {
 
         jFrame1 = new javax.swing.JFrame();
         file_chooser = new javax.swing.JFileChooser();
+        jFrame2 = new javax.swing.JFrame();
+        file_chooser_save = new javax.swing.JFileChooser();
         jScrollPane1 = new javax.swing.JScrollPane();
         text = new javax.swing.JTextArea();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -61,8 +55,6 @@ public class GUI extends javax.swing.JFrame {
         ouvrir = new javax.swing.JMenuItem();
         enregistrer = new javax.swing.JMenuItem();
         enregistrer_sous = new javax.swing.JMenuItem();
-        jSeparator1 = new javax.swing.JPopupMenu.Separator();
-        mise_en_page = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
         quitter = new javax.swing.JMenuItem();
         edition_menu = new javax.swing.JMenu();
@@ -91,12 +83,7 @@ public class GUI extends javax.swing.JFrame {
 
         file_chooser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                try {
-                    file_chooserActionPerformed(evt);
-                } catch (IOException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
+                file_chooserActionPerformed(evt);
             }
         });
 
@@ -120,12 +107,45 @@ public class GUI extends javax.swing.JFrame {
                     .addComponent(file_chooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        javax.swing.GroupLayout jFrame2Layout = new javax.swing.GroupLayout(jFrame2.getContentPane());
+        jFrame2.getContentPane().setLayout(jFrame2Layout);
+        jFrame2Layout.setHorizontalGroup(
+            jFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(jFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jFrame2Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(file_chooser_save, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        jFrame2Layout.setVerticalGroup(
+            jFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(jFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jFrame2Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(file_chooser_save, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Bloc-notes");
         setPreferredSize(new java.awt.Dimension(800, 600));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         text.setColumns(20);
         text.setRows(5);
+        text.setPreferredSize(new java.awt.Dimension(800, 6));
+        text.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                textKeyReleased(evt);
+            }
+        });
         jScrollPane1.setViewportView(text);
 
         getContentPane().add(jScrollPane1, java.awt.BorderLayout.CENTER);
@@ -171,11 +191,12 @@ public class GUI extends javax.swing.JFrame {
         enregistrer_sous.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
         enregistrer_sous.setText("Enregistrer sous...");
         enregistrer_sous.setToolTipText("");
+        enregistrer_sous.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enregistrer_sousActionPerformed(evt);
+            }
+        });
         fichier_menu.add(enregistrer_sous);
-        fichier_menu.add(jSeparator1);
-
-        mise_en_page.setText("Mise en page");
-        fichier_menu.add(mise_en_page);
         fichier_menu.add(jSeparator2);
 
         quitter.setText("Quitter");
@@ -300,6 +321,7 @@ public class GUI extends javax.swing.JFrame {
         }
         //vider text
         this.text.setText("");
+        this.file_text = "";
     }//GEN-LAST:event_nouveauActionPerformed
 
     private void annulerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_annulerActionPerformed
@@ -312,18 +334,18 @@ public class GUI extends javax.swing.JFrame {
         jFrame1.setVisible(true);
     }//GEN-LAST:event_ouvrirActionPerformed
 
-    private void file_chooserActionPerformed(java.awt.event.ActionEvent evt) throws IOException {//GEN-FIRST:event_file_chooserActionPerformed
+    private void file_chooserActionPerformed(java.awt.event.ActionEvent evt){                                             
         //check if button cancel is clicked or open button is clicked
         this.file_name = file_chooser.getSelectedFile().getAbsolutePath();
-        this.file_chooser_opened = true;
+        this.set_title();
         if(file_chooser.getSelectedFile() == null){
             jFrame1.dispose();
             return;
         }
-        BlocNotes.openFile();
+        BlocNotes.openFile(this.file_name);
         jFrame1.dispose();
         
-    }//GEN-LAST:event_file_chooserActionPerformed
+    }                                           
 
     private void nouvelle_fenetreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nouvelle_fenetreActionPerformed
         //init a new BlocNotes window
@@ -332,15 +354,80 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_nouvelle_fenetreActionPerformed
 
     private void enregistrerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enregistrerActionPerformed
-        // TODO add your handling code here:
+        if(this.file_name == null){
+            //launch enregistrer_sous
+            this.enregistrer_sous.doClick();
+        }else{
+            //save file
+            BlocNotes.save_existing_file(this.text.getText(),this.file_name);
+        }
+        this.set_title();
     }//GEN-LAST:event_enregistrerActionPerformed
 
     private void quitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitterActionPerformed
         //close the jFrame
-        this.dispose();
+        this.close_window();
         
     }//GEN-LAST:event_quitterActionPerformed
 
+    private void enregistrer_sousActionPerformed(java.awt.event.ActionEvent evt){//GEN-FIRST:event_enregistrer_sousActionPerformed
+        //open file chooser to get file path
+        file_chooser_save.setDialogTitle("Enregistrer sous");
+        file_chooser_save.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        file_chooser_save.setAcceptAllFileFilterUsed(false);
+        file_chooser_save.setFileFilter(new FileNameExtensionFilter("Fichier texte", "txt"));
+        file_chooser_save.showSaveDialog(this);
+        this.file_name = file_chooser_save.getSelectedFile().getAbsolutePath();
+        this.set_title();
+        if(file_chooser_save.getSelectedFile() == null){
+            jFrame1.dispose();
+            return;
+        }
+        BlocNotes.save_existing_file(this.text.getText(),this.file_name + ".txt");
+        jFrame1.dispose();
+    }//GEN-LAST:event_enregistrer_sousActionPerformed
+
+    private void textKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textKeyReleased
+        this.set_title();
+    }//GEN-LAST:event_textKeyReleased
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        this.close_window();
+    }//GEN-LAST:event_formWindowClosing
+
+    public void set_title(){
+        //check if the text is empty
+        if(!this.text.getText().equals("") && this.file_name == null){
+            setTitle("*Sans titre - Bloc-notes");
+        }else if(this.file_name != null){
+            if(!this.text.getText().equals(this.file_text)){
+                setTitle("*" +this.file_name + ".txt" + " - Bloc-notes");
+            }
+            else{
+                setTitle(this.file_name + " - Bloc-notes");
+            }
+        }else{
+            setTitle("Sans titre - Bloc-notes");
+        }
+    }
+
+    public void close_window(){
+        if(this.file_text != this.text.getText() && !this.text.getText().equals("")){
+            int reponse = JOptionPane.showConfirmDialog(this, "Voulez-vous enregistrer votre fichier avant de fermer la fenêtre ?", "Bloc-notes", JOptionPane.YES_NO_CANCEL_OPTION);
+            if(reponse == JOptionPane.YES_OPTION){
+                this.enregistrer.doClick();
+            }else if(reponse == JOptionPane.NO_OPTION){
+                //close the window
+                System.gc();
+                this.dispose();
+            }
+            else{
+                return;
+            }
+        }
+        System.gc();
+        this.dispose();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu affichage_menu;
@@ -356,16 +443,16 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem enregistrer_sous;
     private javax.swing.JMenu fichier_menu;
     private javax.swing.JFileChooser file_chooser;
+    private javax.swing.JFileChooser file_chooser_save;
     private javax.swing.JMenu format_menu;
     private javax.swing.JFrame jFrame1;
+    private javax.swing.JFrame jFrame2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JPopupMenu.Separator jSeparator4;
-    private javax.swing.JMenuItem mise_en_page;
     private javax.swing.JMenuItem nouveau;
     private javax.swing.JMenuItem nouvelle_fenetre;
     private javax.swing.JMenuItem ouvrir;
