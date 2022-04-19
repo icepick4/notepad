@@ -4,10 +4,18 @@
  */
 package bloc.notes;
 
+import java.awt.Font;
+import java.awt.event.KeyEvent;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+import javax.swing.InputVerifier;
+import javax.swing.JComponent;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import javax.swing.WindowConstants;
+import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.text.BadLocationException;
 
 /**
  *
@@ -41,10 +49,16 @@ public class GUI extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+
         jFrame1 = new javax.swing.JFrame();
         file_chooser = new javax.swing.JFileChooser();
         jFrame2 = new javax.swing.JFrame();
         file_chooser_save = new javax.swing.JFileChooser();
+        atteindre_window = new javax.swing.JFrame();
+        atteindre_input = new javax.swing.JTextField();
+        atteindre_bouton = new javax.swing.JButton();
+        atteindre_annuler = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         text = new javax.swing.JTextArea();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -72,7 +86,7 @@ public class GUI extends javax.swing.JFrame {
         selectionner_tout = new javax.swing.JMenuItem();
         date_heure = new javax.swing.JMenuItem();
         format_menu = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        retour_ligne_auto = new javax.swing.JCheckBoxMenuItem();
         affichage_menu = new javax.swing.JMenu();
         zoom_menu = new javax.swing.JMenu();
         zoom_avant = new javax.swing.JMenuItem();
@@ -128,7 +142,66 @@ public class GUI extends javax.swing.JFrame {
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
-        setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+        atteindre_window.setResizable(false);
+
+        atteindre_input.setText("");
+        atteindre_input.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                atteindre_inputKeyReleased(evt);
+            }
+        });
+
+        atteindre_bouton.setText("Atteindre");
+        atteindre_bouton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                atteindre_boutonActionPerformed(evt);
+            }
+        });
+
+        atteindre_annuler.setText("Annuler");
+        atteindre_annuler.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                atteindre_annulerActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Numéro de ligne :");
+
+        javax.swing.GroupLayout atteindre_windowLayout = new javax.swing.GroupLayout(atteindre_window.getContentPane());
+        atteindre_window.getContentPane().setLayout(atteindre_windowLayout);
+        atteindre_windowLayout.setHorizontalGroup(
+            atteindre_windowLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(atteindre_windowLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(atteindre_windowLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, atteindre_windowLayout.createSequentialGroup()
+                        .addGroup(atteindre_windowLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(atteindre_input)
+                            .addGroup(atteindre_windowLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(atteindre_bouton)
+                                .addGap(18, 18, 18)
+                                .addComponent(atteindre_annuler)))
+                        .addGap(15, 15, 15))
+                    .addGroup(atteindre_windowLayout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+        );
+        atteindre_windowLayout.setVerticalGroup(
+            atteindre_windowLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, atteindre_windowLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addComponent(atteindre_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(atteindre_windowLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(atteindre_annuler)
+                    .addComponent(atteindre_bouton))
+                .addGap(14, 14, 14))
+        );
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Bloc-notes");
         setPreferredSize(new java.awt.Dimension(800, 600));
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -138,8 +211,8 @@ public class GUI extends javax.swing.JFrame {
         });
 
         text.setColumns(20);
+        text.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         text.setRows(5);
-        text.setPreferredSize(new java.awt.Dimension(800, 6));
         text.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 textKeyReleased(evt);
@@ -212,6 +285,7 @@ public class GUI extends javax.swing.JFrame {
 
         annuler.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Z, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         annuler.setText("Annuler");
+        annuler.setEnabled(false);
         annuler.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 annulerActionPerformed(evt);
@@ -222,10 +296,12 @@ public class GUI extends javax.swing.JFrame {
 
         couper.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         couper.setText("Couper");
+        couper.setEnabled(false);
         edition_menu.add(couper);
 
         copier.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         copier.setText("Copier");
+        copier.setEnabled(false);
         edition_menu.add(copier);
 
         coller.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.CTRL_DOWN_MASK));
@@ -234,19 +310,23 @@ public class GUI extends javax.swing.JFrame {
 
         suppr.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_DELETE, 0));
         suppr.setText("Supprimer");
+        suppr.setEnabled(false);
         edition_menu.add(suppr);
         edition_menu.add(jSeparator4);
 
         rechercher.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         rechercher.setText("Rechercher");
+        rechercher.setEnabled(false);
         edition_menu.add(rechercher);
 
         rechercher_suivant.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F3, 0));
         rechercher_suivant.setText("Rechercher le suivant");
+        rechercher_suivant.setEnabled(false);
         edition_menu.add(rechercher_suivant);
 
         rechercher_precedent.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F3, java.awt.event.InputEvent.SHIFT_DOWN_MASK));
         rechercher_precedent.setText("Rechercher le précédent");
+        rechercher_precedent.setEnabled(false);
         edition_menu.add(rechercher_precedent);
 
         remplacer.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.CTRL_DOWN_MASK));
@@ -255,22 +335,42 @@ public class GUI extends javax.swing.JFrame {
 
         atteindre.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         atteindre.setText("Atteindre");
+        atteindre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                atteindreActionPerformed(evt);
+            }
+        });
         edition_menu.add(atteindre);
 
         selectionner_tout.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         selectionner_tout.setText("Sélectionner tout");
+        selectionner_tout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selectionner_toutActionPerformed(evt);
+            }
+        });
         edition_menu.add(selectionner_tout);
 
         date_heure.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F5, 0));
         date_heure.setText("Heure/Date");
+        date_heure.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                date_heureActionPerformed(evt);
+            }
+        });
         edition_menu.add(date_heure);
 
         jMenuBar1.add(edition_menu);
 
         format_menu.setText("Format");
 
-        jMenuItem1.setText("Retour automatique à la ligne");
-        format_menu.add(jMenuItem1);
+        retour_ligne_auto.setText("Retour à la ligne automatique");
+        retour_ligne_auto.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                retour_ligne_autoStateChanged(evt);
+            }
+        });
+        format_menu.add(retour_ligne_auto);
 
         jMenuBar1.add(format_menu);
 
@@ -280,14 +380,29 @@ public class GUI extends javax.swing.JFrame {
 
         zoom_avant.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_ADD, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         zoom_avant.setText("Zoom avant");
+        zoom_avant.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                zoom_avantActionPerformed(evt);
+            }
+        });
         zoom_menu.add(zoom_avant);
 
         zoom_arriere.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_SUBTRACT, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         zoom_arriere.setText("Zoom arrière");
+        zoom_arriere.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                zoom_arriereActionPerformed(evt);
+            }
+        });
         zoom_menu.add(zoom_arriere);
 
         zoom_defaut.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_NUMPAD0, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         zoom_defaut.setText("Restaurer le zoom par défaut");
+        zoom_defaut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                zoom_defautActionPerformed(evt);
+            }
+        });
         zoom_menu.add(zoom_defaut);
 
         affichage_menu.add(zoom_menu);
@@ -393,6 +508,86 @@ public class GUI extends javax.swing.JFrame {
         this.close_window();
     }//GEN-LAST:event_formWindowClosing
 
+    private void retour_ligne_autoStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_retour_ligne_autoStateChanged
+        //if auto line return is checked, set the text to auto line return (linewrap)
+        if(this.retour_ligne_auto.isSelected()){
+            this.text.setLineWrap(true);
+        }else{
+            this.text.setLineWrap(false);
+        }
+    }//GEN-LAST:event_retour_ligne_autoStateChanged
+
+    private void selectionner_toutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectionner_toutActionPerformed
+        this.text.selectAll();
+    }//GEN-LAST:event_selectionner_toutActionPerformed
+
+    private void date_heureActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_date_heureActionPerformed
+        LocalDateTime currentTime = LocalDateTime.now();
+        String time_stamp = currentTime.format(DateTimeFormatter.ofPattern("HH:mm dd/MM/yyyy"));
+        this.text.append(time_stamp);  
+        this.set_title();      
+    }//GEN-LAST:event_date_heureActionPerformed
+
+    private void zoom_avantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_zoom_avantActionPerformed
+        //increase font size of text (max : 60)
+        if(this.text.getFont().getSize() < 60){
+            this.text.setFont(new Font(this.text.getFont().getName(),this.text.getFont().getStyle(),this.text.getFont().getSize() + 2));
+        }
+
+    }//GEN-LAST:event_zoom_avantActionPerformed
+
+    private void zoom_arriereActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_zoom_arriereActionPerformed
+        //decrease font size of text (min : 5)
+        if(this.text.getFont().getSize() > 5){
+            this.text.setFont(new Font(this.text.getFont().getName(),this.text.getFont().getStyle(),this.text.getFont().getSize() - 2));
+        }
+    }//GEN-LAST:event_zoom_arriereActionPerformed
+
+    private void zoom_defautActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_zoom_defautActionPerformed
+        this.text.setFont(new Font(this.text.getFont().getName(),this.text.getFont().getStyle(),20));
+    }//GEN-LAST:event_zoom_defautActionPerformed
+
+    private void atteindreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atteindreActionPerformed
+        //open this.atteindre_window
+        this.atteindre_window.pack();
+        //put the window in the middle of Jframe
+        this.atteindre_window.setLocationRelativeTo(this);
+
+        this.atteindre_window.setVisible(true);
+
+    }//GEN-LAST:event_atteindreActionPerformed
+
+    private void atteindre_annulerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atteindre_annulerActionPerformed
+        this.atteindre_window.dispose();
+    }//GEN-LAST:event_atteindre_annulerActionPerformed
+
+    private void atteindre_boutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atteindre_boutonActionPerformed
+        //get the line number from the text field
+        int line_number = Integer.parseInt(this.atteindre_input.getText());
+        //set the cursor to the line number
+        try {
+            this.text.setCaretPosition(this.text.getLineStartOffset(line_number - 1));
+            this.atteindre_window.dispose();
+        } catch (BadLocationException e) {
+            //if the line number is not valid, show an error message
+            JOptionPane.showMessageDialog(this, "Le numéro de ligne dépasse le nombre total de lignes", "Bloc-notes - Aller à la ligne", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_atteindre_boutonActionPerformed
+
+    private void atteindre_inputKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_atteindre_inputKeyReleased
+        String text = ((JTextField) this.atteindre_input).getText();
+        try {
+            Integer.parseInt(text);
+        } catch (NumberFormatException e) {
+            if(text.equals("")){
+                this.atteindre_input.setText("");
+            }else{
+                JOptionPane.showMessageDialog(this, "Le numéro de ligne doit être un nombre entier", "Bloc-notes - Aller à la ligne", JOptionPane.ERROR_MESSAGE);
+                this.atteindre_input.setText(text.substring(0, text.length() - 1));
+            }
+        }
+    }//GEN-LAST:event_atteindre_inputKeyReleased
+
     public void set_title(){
         //check if the text is empty
         if(!this.text.getText().equals("") && this.file_name == null){
@@ -402,7 +597,10 @@ public class GUI extends javax.swing.JFrame {
                 setTitle("*" +this.file_name + ".txt" + " - Bloc-notes");
             }
             else{
-                setTitle(this.file_name + " - Bloc-notes");
+                //get only the title of the file in this.file_name
+                String[] file_name_split = this.file_name.split("\\\\");
+                String file_name = file_name_split[file_name_split.length - 1];
+                setTitle(file_name + " - Bloc-notes");
             }
         }else{
             setTitle("Sans titre - Bloc-notes");
@@ -431,6 +629,10 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JMenu affichage_menu;
     private javax.swing.JMenuItem annuler;
     private javax.swing.JMenuItem atteindre;
+    private javax.swing.JButton atteindre_annuler;
+    private javax.swing.JButton atteindre_bouton;
+    private javax.swing.JTextField atteindre_input;
+    private javax.swing.JFrame atteindre_window;
     private javax.swing.JCheckBoxMenuItem barre_etat_check;
     private javax.swing.JMenuItem coller;
     private javax.swing.JMenuItem copier;
@@ -445,8 +647,8 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JMenu format_menu;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JFrame jFrame2;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
@@ -459,6 +661,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem rechercher_precedent;
     private javax.swing.JMenuItem rechercher_suivant;
     private javax.swing.JMenuItem remplacer;
+    private javax.swing.JCheckBoxMenuItem retour_ligne_auto;
     private javax.swing.JMenuItem selectionner_tout;
     private javax.swing.JMenuItem suppr;
     private javax.swing.JTextArea text;
