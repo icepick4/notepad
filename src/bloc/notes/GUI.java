@@ -47,15 +47,26 @@ public class GUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jFrame1 = new javax.swing.JFrame();
-        file_chooser = new javax.swing.JFileChooser();
-        jFrame2 = new javax.swing.JFrame();
+        file_chooser_open_jframe = new javax.swing.JFrame();
+        file_chooser_open = new javax.swing.JFileChooser();
+        file_chooser_save_jframe = new javax.swing.JFrame();
         file_chooser_save = new javax.swing.JFileChooser();
-        atteindre_window = new javax.swing.JFrame();
+        atteindre_jframe = new javax.swing.JFrame();
         atteindre_input = new javax.swing.JTextField();
         atteindre_bouton = new javax.swing.JButton();
         atteindre_annuler = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        label_atteindre = new javax.swing.JLabel();
+        rechercher_jframe = new javax.swing.JFrame();
+        rechercher_label = new javax.swing.JLabel();
+        rechercher_input = new javax.swing.JTextField();
+        rechercher_suivant_btn = new javax.swing.JButton();
+        rechercher_annuler = new javax.swing.JButton();
+        direction_label = new javax.swing.JLabel();
+        haut_rb = new javax.swing.JRadioButton();
+        bas_rb = new javax.swing.JRadioButton();
+        rechercher_casse = new javax.swing.JCheckBox();
+        rechercher_retour_ligne = new javax.swing.JCheckBox();
+        rechercher_group_rb = new javax.swing.ButtonGroup();
         jScrollPane1 = new javax.swing.JScrollPane();
         text = new javax.swing.JTextArea();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -91,55 +102,55 @@ public class GUI extends javax.swing.JFrame {
         zoom_defaut = new javax.swing.JMenuItem();
         barre_etat_check = new javax.swing.JCheckBoxMenuItem();
 
-        file_chooser.addActionListener(new java.awt.event.ActionListener() {
+        file_chooser_open.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                file_chooserActionPerformed(evt);
+                file_chooser_openActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
-        jFrame1.getContentPane().setLayout(jFrame1Layout);
-        jFrame1Layout.setHorizontalGroup(
-            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout file_chooser_open_jframeLayout = new javax.swing.GroupLayout(file_chooser_open_jframe.getContentPane());
+        file_chooser_open_jframe.getContentPane().setLayout(file_chooser_open_jframeLayout);
+        file_chooser_open_jframeLayout.setHorizontalGroup(
+            file_chooser_open_jframeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 516, Short.MAX_VALUE)
-            .addGroup(jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jFrame1Layout.createSequentialGroup()
+            .addGroup(file_chooser_open_jframeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(file_chooser_open_jframeLayout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(file_chooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(file_chooser_open, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
-        jFrame1Layout.setVerticalGroup(
-            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        file_chooser_open_jframeLayout.setVerticalGroup(
+            file_chooser_open_jframeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 326, Short.MAX_VALUE)
-            .addGroup(jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jFrame1Layout.createSequentialGroup()
+            .addGroup(file_chooser_open_jframeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(file_chooser_open_jframeLayout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(file_chooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(file_chooser_open, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
-        javax.swing.GroupLayout jFrame2Layout = new javax.swing.GroupLayout(jFrame2.getContentPane());
-        jFrame2.getContentPane().setLayout(jFrame2Layout);
-        jFrame2Layout.setHorizontalGroup(
-            jFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout file_chooser_save_jframeLayout = new javax.swing.GroupLayout(file_chooser_save_jframe.getContentPane());
+        file_chooser_save_jframe.getContentPane().setLayout(file_chooser_save_jframeLayout);
+        file_chooser_save_jframeLayout.setHorizontalGroup(
+            file_chooser_save_jframeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 400, Short.MAX_VALUE)
-            .addGroup(jFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jFrame2Layout.createSequentialGroup()
+            .addGroup(file_chooser_save_jframeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(file_chooser_save_jframeLayout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(file_chooser_save, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
-        jFrame2Layout.setVerticalGroup(
-            jFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        file_chooser_save_jframeLayout.setVerticalGroup(
+            file_chooser_save_jframeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 300, Short.MAX_VALUE)
-            .addGroup(jFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jFrame2Layout.createSequentialGroup()
+            .addGroup(file_chooser_save_jframeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(file_chooser_save_jframeLayout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(file_chooser_save, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
-        atteindre_window.setResizable(false);
+        atteindre_jframe.setResizable(false);
 
         atteindre_input.setText("");
         atteindre_input.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -162,43 +173,127 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("Numéro de ligne :");
+        label_atteindre.setText("Numéro de ligne :");
 
-        javax.swing.GroupLayout atteindre_windowLayout = new javax.swing.GroupLayout(atteindre_window.getContentPane());
-        atteindre_window.getContentPane().setLayout(atteindre_windowLayout);
-        atteindre_windowLayout.setHorizontalGroup(
-            atteindre_windowLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(atteindre_windowLayout.createSequentialGroup()
+        javax.swing.GroupLayout atteindre_jframeLayout = new javax.swing.GroupLayout(atteindre_jframe.getContentPane());
+        atteindre_jframe.getContentPane().setLayout(atteindre_jframeLayout);
+        atteindre_jframeLayout.setHorizontalGroup(
+            atteindre_jframeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(atteindre_jframeLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(atteindre_windowLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, atteindre_windowLayout.createSequentialGroup()
-                        .addGroup(atteindre_windowLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(atteindre_jframeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, atteindre_jframeLayout.createSequentialGroup()
+                        .addGroup(atteindre_jframeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(atteindre_input)
-                            .addGroup(atteindre_windowLayout.createSequentialGroup()
+                            .addGroup(atteindre_jframeLayout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(atteindre_bouton)
                                 .addGap(18, 18, 18)
                                 .addComponent(atteindre_annuler)))
                         .addGap(15, 15, 15))
-                    .addGroup(atteindre_windowLayout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(atteindre_jframeLayout.createSequentialGroup()
+                        .addComponent(label_atteindre, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
-        atteindre_windowLayout.setVerticalGroup(
-            atteindre_windowLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, atteindre_windowLayout.createSequentialGroup()
+        atteindre_jframeLayout.setVerticalGroup(
+            atteindre_jframeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, atteindre_jframeLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
+                .addComponent(label_atteindre)
                 .addGap(18, 18, 18)
                 .addComponent(atteindre_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(atteindre_windowLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(atteindre_jframeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(atteindre_annuler)
                     .addComponent(atteindre_bouton))
                 .addGap(14, 14, 14))
         );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        rechercher_jframe.setAlwaysOnTop(true);
+
+        rechercher_label.setText("Rechercher :");
+
+        rechercher_suivant_btn.setText("Suivant");
+        rechercher_suivant_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rechercher_suivant_btnActionPerformed(evt);
+            }
+        });
+
+        rechercher_annuler.setText("Annuler");
+        rechercher_annuler.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rechercher_annulerActionPerformed(evt);
+            }
+        });
+
+        direction_label.setText("Direction");
+
+        rechercher_group_rb.add(haut_rb);
+        haut_rb.setText("Haut");
+
+        rechercher_group_rb.add(bas_rb);
+        bas_rb.setSelected(true);
+        bas_rb.setText("Bas");
+
+        rechercher_casse.setText("Respecter la casse");
+
+        rechercher_retour_ligne.setText("Retour à la ligne");
+
+        javax.swing.GroupLayout rechercher_jframeLayout = new javax.swing.GroupLayout(rechercher_jframe.getContentPane());
+        rechercher_jframe.getContentPane().setLayout(rechercher_jframeLayout);
+        rechercher_jframeLayout.setHorizontalGroup(
+            rechercher_jframeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(rechercher_jframeLayout.createSequentialGroup()
+                .addGroup(rechercher_jframeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(rechercher_jframeLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(rechercher_jframeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(rechercher_casse)
+                            .addComponent(rechercher_retour_ligne))
+                        .addGap(39, 39, 39)
+                        .addGroup(rechercher_jframeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(haut_rb)
+                            .addComponent(direction_label))
+                        .addGroup(rechercher_jframeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(rechercher_jframeLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(bas_rb))
+                            .addGroup(rechercher_jframeLayout.createSequentialGroup()
+                                .addGap(56, 56, 56)
+                                .addComponent(rechercher_annuler)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(rechercher_jframeLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(rechercher_label)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rechercher_input, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(rechercher_suivant_btn)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        rechercher_jframeLayout.setVerticalGroup(
+            rechercher_jframeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(rechercher_jframeLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(rechercher_jframeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rechercher_label)
+                    .addComponent(rechercher_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rechercher_suivant_btn))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(rechercher_jframeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rechercher_annuler)
+                    .addComponent(direction_label)
+                    .addComponent(rechercher_casse))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(rechercher_jframeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(haut_rb)
+                    .addComponent(bas_rb)
+                    .addComponent(rechercher_retour_ligne))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Bloc-notes");
         setPreferredSize(new java.awt.Dimension(800, 600));
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -314,16 +409,31 @@ public class GUI extends javax.swing.JFrame {
         rechercher.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         rechercher.setText("Rechercher");
         rechercher.setEnabled(false);
+        rechercher.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rechercherActionPerformed(evt);
+            }
+        });
         edition_menu.add(rechercher);
 
         rechercher_suivant.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F3, 0));
         rechercher_suivant.setText("Rechercher le suivant");
         rechercher_suivant.setEnabled(false);
+        rechercher_suivant.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rechercher_suivantActionPerformed(evt);
+            }
+        });
         edition_menu.add(rechercher_suivant);
 
         rechercher_precedent.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F3, java.awt.event.InputEvent.SHIFT_DOWN_MASK));
         rechercher_precedent.setText("Rechercher le précédent");
         rechercher_precedent.setEnabled(false);
+        rechercher_precedent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rechercher_precedentActionPerformed(evt);
+            }
+        });
         edition_menu.add(rechercher_precedent);
 
         remplacer.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.CTRL_DOWN_MASK));
@@ -441,24 +551,24 @@ public class GUI extends javax.swing.JFrame {
 
     private void ouvrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ouvrirActionPerformed
         // TODO add your handling code here:
-        jFrame1.pack();
-        jFrame1.setVisible(true);
+        file_chooser_open_jframe.pack();
+        file_chooser_open_jframe.setVisible(true);
     }//GEN-LAST:event_ouvrirActionPerformed
 
-    private void file_chooserActionPerformed(java.awt.event.ActionEvent evt){                                             
+    private void file_chooser_openActionPerformed(java.awt.event.ActionEvent evt){                                             
         //if button "annuler" is clicked
         if(evt.getActionCommand().equals(javax.swing.JFileChooser.CANCEL_SELECTION)){
-            jFrame1.dispose();
+            file_chooser_open_jframe.dispose();
             return;
         }
-        this.file_name = file_chooser.getSelectedFile().getAbsolutePath();
+        this.file_name = file_chooser_open.getSelectedFile().getAbsolutePath();
         this.set_title();
-        if(file_chooser.getSelectedFile() == null){
-            jFrame1.dispose();
+        if(file_chooser_open.getSelectedFile() == null){
+            file_chooser_open_jframe.dispose();
             return;
         }
         bloc_notes.openFile(this.file_name);
-        jFrame1.dispose();
+        file_chooser_open_jframe.dispose();
         
     }                                           
 
@@ -492,17 +602,27 @@ public class GUI extends javax.swing.JFrame {
         file_chooser_save.setFileFilter(new FileNameExtensionFilter("Fichier texte", "txt"));
         file_chooser_save.showSaveDialog(this);
         if(file_chooser_save.getSelectedFile() == null){
-            jFrame1.dispose();
+            file_chooser_open_jframe.dispose();
             return;
         }
         this.file_name = file_chooser_save.getSelectedFile().getAbsolutePath();
         this.set_title();
         this.bloc_notes.save_existing_file(this.text.getText(),this.file_name + ".txt");
-        jFrame1.dispose();
+        file_chooser_open_jframe.dispose();
     }//GEN-LAST:event_enregistrer_sousActionPerformed
 
     private void textKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textKeyReleased
         this.set_title();
+        //if the text is not empty, enable rechercher button, rechercher_suivant button and rechercher_precedent button
+        if(!this.text.getText().equals("")){
+            this.rechercher.setEnabled(true);
+            this.rechercher_suivant.setEnabled(true);
+            this.rechercher_precedent.setEnabled(true);
+        }else{
+            this.rechercher.setEnabled(false);
+            this.rechercher_suivant.setEnabled(false);
+            this.rechercher_precedent.setEnabled(false);
+        }
     }//GEN-LAST:event_textKeyReleased
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
@@ -550,16 +670,16 @@ public class GUI extends javax.swing.JFrame {
 
     private void atteindreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atteindreActionPerformed
         //open this.atteindre_window
-        this.atteindre_window.pack();
+        this.atteindre_jframe.pack();
         //put the window in the middle of Jframe
-        this.atteindre_window.setLocationRelativeTo(this);
+        this.atteindre_jframe.setLocationRelativeTo(this);
 
-        this.atteindre_window.setVisible(true);
+        this.atteindre_jframe.setVisible(true);
 
     }//GEN-LAST:event_atteindreActionPerformed
 
     private void atteindre_annulerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atteindre_annulerActionPerformed
-        this.atteindre_window.dispose();
+        this.atteindre_jframe.dispose();
     }//GEN-LAST:event_atteindre_annulerActionPerformed
 
     private void atteindre_boutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atteindre_boutonActionPerformed
@@ -568,7 +688,7 @@ public class GUI extends javax.swing.JFrame {
         //set the cursor to the line number
         try {
             this.text.setCaretPosition(this.text.getLineStartOffset(line_number - 1));
-            this.atteindre_window.dispose();
+            this.atteindre_jframe.dispose();
         } catch (BadLocationException e) {
             //if the line number is not valid, show an error message
             JOptionPane.showMessageDialog(this, "Le numéro de ligne dépasse le nombre total de lignes", "Bloc-notes - Aller à la ligne", JOptionPane.ERROR_MESSAGE);
@@ -588,6 +708,30 @@ public class GUI extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_atteindre_inputKeyReleased
+
+    private void rechercherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rechercherActionPerformed
+        //open this.rechercher_window
+        this.rechercher_jframe.pack();
+        //put the window in the middle of Jframe
+        this.rechercher_jframe.setLocationRelativeTo(this);
+        this.rechercher_jframe.setVisible(true);
+    }//GEN-LAST:event_rechercherActionPerformed
+
+    private void rechercher_suivant_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rechercher_suivant_btnActionPerformed
+        this.rechercher();
+    }//GEN-LAST:event_rechercher_suivant_btnActionPerformed
+
+    private void rechercher_annulerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rechercher_annulerActionPerformed
+        this.rechercher_jframe.dispose();
+    }//GEN-LAST:event_rechercher_annulerActionPerformed
+
+    private void rechercher_suivantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rechercher_suivantActionPerformed
+        this.rechercher_suivant();
+    }//GEN-LAST:event_rechercher_suivantActionPerformed
+
+    private void rechercher_precedentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rechercher_precedentActionPerformed
+        this.rechercher_precedent();
+    }//GEN-LAST:event_rechercher_precedentActionPerformed
 
     public void set_title(){
         //check if the text is empty
@@ -620,10 +764,64 @@ public class GUI extends javax.swing.JFrame {
                 return;
             }
         }
-        //close only the window associate with the BlocNotes class
         this.dispose();
+    }
 
+    public void rechercher_suivant(){
+        String text = this.rechercher_input.getText();
+        boolean casse = this.rechercher_casse.isSelected();
+        boolean retour_ligne = this.rechercher_retour_ligne.isSelected();
+        int index = 0;
+        if(!casse){
+            index = this.text.getText().toLowerCase().indexOf(text.toLowerCase(), this.text.getCaretPosition());
+        }
+        else{
+            index = this.text.getText().indexOf(text, this.text.getCaretPosition());
+        }
+        if(index != -1){
+            this.text.setCaretPosition(index);
+            this.text.select(index, index + text.length());
+        }else{
+            //put the messagedialog over the window
+            this.rechercher_jframe.setAlwaysOnTop(false);
+            JOptionPane.showMessageDialog(this, "La recherche n'a pas abouti", "Bloc-notes - Rechercher", JOptionPane.ERROR_MESSAGE);
+        }
+        this.rechercher_jframe.setAlwaysOnTop(true);
+    }
 
+    public void rechercher_precedent(){
+        String text = this.rechercher_input.getText();
+        boolean casse = this.rechercher_casse.isSelected();
+        boolean retour_ligne = this.rechercher_retour_ligne.isSelected();
+        int index = 0;
+        //remove the text after the cursor
+        String sous_texte = this.text.getText().substring(0,this.text.getCaretPosition()-1);
+        //search in the text before the cursor
+        if(!casse){
+            index = sous_texte.toLowerCase().lastIndexOf(text.toLowerCase());
+        }
+        else{
+            index = sous_texte.lastIndexOf(text);
+        }
+        if(index != -1){
+            this.text.setCaretPosition(index);
+            this.text.select(index, index + text.length());
+        }else{
+            //put the messagedialog over the window
+            this.rechercher_jframe.setAlwaysOnTop(false);
+            JOptionPane.showMessageDialog(this, "La recherche n'a pas abouti", "Bloc-notes - Rechercher", JOptionPane.ERROR_MESSAGE);
+        }
+        this.rechercher_jframe.setAlwaysOnTop(true);
+    }
+
+    public void rechercher(){
+        boolean bas = this.bas_rb.isSelected();
+        if(bas){
+            this.rechercher_suivant();
+        }
+        else{
+            this.rechercher_precedent();
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -633,34 +831,45 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JButton atteindre_annuler;
     private javax.swing.JButton atteindre_bouton;
     private javax.swing.JTextField atteindre_input;
-    private javax.swing.JFrame atteindre_window;
+    private javax.swing.JFrame atteindre_jframe;
     private javax.swing.JCheckBoxMenuItem barre_etat_check;
+    private javax.swing.JRadioButton bas_rb;
     private javax.swing.JMenuItem coller;
     private javax.swing.JMenuItem copier;
     private javax.swing.JMenuItem couper;
     private javax.swing.JMenuItem date_heure;
+    private javax.swing.JLabel direction_label;
     private javax.swing.JMenu edition_menu;
     private javax.swing.JMenuItem enregistrer;
     private javax.swing.JMenuItem enregistrer_sous;
     private javax.swing.JMenu fichier_menu;
-    private javax.swing.JFileChooser file_chooser;
+    private javax.swing.JFileChooser file_chooser_open;
+    private javax.swing.JFrame file_chooser_open_jframe;
     private javax.swing.JFileChooser file_chooser_save;
+    private javax.swing.JFrame file_chooser_save_jframe;
     private javax.swing.JMenu format_menu;
-    private javax.swing.JFrame jFrame1;
-    private javax.swing.JFrame jFrame2;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JRadioButton haut_rb;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JPopupMenu.Separator jSeparator4;
+    private javax.swing.JLabel label_atteindre;
     private javax.swing.JMenuItem nouveau;
     private javax.swing.JMenuItem nouvelle_fenetre;
     private javax.swing.JMenuItem ouvrir;
     private javax.swing.JMenuItem quitter;
     private javax.swing.JMenuItem rechercher;
+    private javax.swing.JButton rechercher_annuler;
+    private javax.swing.JCheckBox rechercher_casse;
+    private javax.swing.ButtonGroup rechercher_group_rb;
+    private javax.swing.JTextField rechercher_input;
+    private javax.swing.JFrame rechercher_jframe;
+    private javax.swing.JLabel rechercher_label;
     private javax.swing.JMenuItem rechercher_precedent;
+    private javax.swing.JCheckBox rechercher_retour_ligne;
     private javax.swing.JMenuItem rechercher_suivant;
+    private javax.swing.JButton rechercher_suivant_btn;
     private javax.swing.JMenuItem remplacer;
     private javax.swing.JCheckBoxMenuItem retour_ligne_auto;
     private javax.swing.JMenuItem selectionner_tout;
