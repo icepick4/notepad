@@ -16,14 +16,14 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class GUI extends javax.swing.JFrame {
     private String file_name;
     private String file_text;
-    private boolean not_saved;
+    private BlocNotes bloc_notes;
     /**
      * Creates new form GUI
      */
-    public GUI() {
+    public GUI(BlocNotes bloc_notes) {
+        this.bloc_notes = bloc_notes;
         initComponents();
     }
-    
     
     public String get_file_name(){
         return this.file_name;
@@ -41,7 +41,6 @@ public class GUI extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
         jFrame1 = new javax.swing.JFrame();
         file_chooser = new javax.swing.JFileChooser();
         jFrame2 = new javax.swing.JFrame();
@@ -307,7 +306,7 @@ public class GUI extends javax.swing.JFrame {
     private void nouveauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nouveauActionPerformed
         //if not saved, ask to save
         if(this.file_text != this.text.getText() && !this.text.getText().equals("")){
-            int reponse = JOptionPane.showConfirmDialog(this, "Voulez-vous enregistrer votre fichier avant de créer un nouveau fichier ?", "Enregistrer", JOptionPane.YES_NO_CANCEL_OPTION);
+            int reponse = JOptionPane.showConfirmDialog(this, "Voulez-vous enregistrer votre fichier avant de créer un nouveau fichier ?", "Bloc-notes", JOptionPane.YES_NO_CANCEL_OPTION);
             if(reponse == JOptionPane.YES_OPTION){
                 this.enregistrer.doClick();
             }else if(reponse == JOptionPane.NO_OPTION){
@@ -342,15 +341,14 @@ public class GUI extends javax.swing.JFrame {
             jFrame1.dispose();
             return;
         }
-        BlocNotes.openFile(this.file_name);
+        bloc_notes.openFile(this.file_name);
         jFrame1.dispose();
         
     }                                           
 
     private void nouvelle_fenetreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nouvelle_fenetreActionPerformed
         //init a new BlocNotes window
-        GUI new_gui = new GUI();
-        new_gui.setVisible(true);
+        BlocNotes new_bloc_notes = new BlocNotes();
     }//GEN-LAST:event_nouvelle_fenetreActionPerformed
 
     private void enregistrerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enregistrerActionPerformed
@@ -359,7 +357,7 @@ public class GUI extends javax.swing.JFrame {
             this.enregistrer_sous.doClick();
         }else{
             //save file
-            BlocNotes.save_existing_file(this.text.getText(),this.file_name);
+            this.bloc_notes.save_existing_file(this.text.getText(),this.file_name);
         }
         this.set_title();
     }//GEN-LAST:event_enregistrerActionPerformed
@@ -383,7 +381,7 @@ public class GUI extends javax.swing.JFrame {
             jFrame1.dispose();
             return;
         }
-        BlocNotes.save_existing_file(this.text.getText(),this.file_name + ".txt");
+        this.bloc_notes.save_existing_file(this.text.getText(),this.file_name + ".txt");
         jFrame1.dispose();
     }//GEN-LAST:event_enregistrer_sousActionPerformed
 

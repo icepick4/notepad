@@ -20,17 +20,20 @@ import java.nio.charset.StandardCharsets;
  * @author Remi
  */
 public class BlocNotes {
-    private static GUI gui;
+    private GUI gui;
+
+    public BlocNotes() {
+        gui = new GUI(this);
+        gui.setVisible(true);
+    }
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        gui = new GUI();
-        gui.setVisible(true);
+        BlocNotes bloc_notes = new BlocNotes();
     }
 
-    public static void openFile(String file) {
-        System.out.print(file);
+    public void openFile(String file) {
         //create a File object with file name
         File f = new File(file);
         //create a FileReader object
@@ -61,10 +64,10 @@ public class BlocNotes {
             e.printStackTrace();
         }
         //set the text in the text area
-        gui.set_text(text);
+        this.gui.set_text(text);
     }
 
-    public static void save_existing_file(String text, String file_name) {
+    public void save_existing_file(String text, String file_name) {
         //create a File object with file name
         File f = new File(file_name);
         //create a FileWriter object
@@ -88,7 +91,7 @@ public class BlocNotes {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        gui.set_text(text);
+        this.gui.set_text(text);
     }
 
 
