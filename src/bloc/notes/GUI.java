@@ -5,12 +5,9 @@
 package bloc.notes;
 
 import java.awt.Font;
-import java.awt.event.KeyEvent;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import javax.swing.InputVerifier;
-import javax.swing.JComponent;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -201,7 +198,7 @@ public class GUI extends javax.swing.JFrame {
                 .addGap(14, 14, 14))
         );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Bloc-notes");
         setPreferredSize(new java.awt.Dimension(800, 600));
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -449,7 +446,11 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_ouvrirActionPerformed
 
     private void file_chooserActionPerformed(java.awt.event.ActionEvent evt){                                             
-        //check if button cancel is clicked or open button is clicked
+        //if button "annuler" is clicked
+        if(evt.getActionCommand().equals(javax.swing.JFileChooser.CANCEL_SELECTION)){
+            jFrame1.dispose();
+            return;
+        }
         this.file_name = file_chooser.getSelectedFile().getAbsolutePath();
         this.set_title();
         if(file_chooser.getSelectedFile() == null){
@@ -490,12 +491,12 @@ public class GUI extends javax.swing.JFrame {
         file_chooser_save.setAcceptAllFileFilterUsed(false);
         file_chooser_save.setFileFilter(new FileNameExtensionFilter("Fichier texte", "txt"));
         file_chooser_save.showSaveDialog(this);
-        this.file_name = file_chooser_save.getSelectedFile().getAbsolutePath();
-        this.set_title();
         if(file_chooser_save.getSelectedFile() == null){
             jFrame1.dispose();
             return;
         }
+        this.file_name = file_chooser_save.getSelectedFile().getAbsolutePath();
+        this.set_title();
         this.bloc_notes.save_existing_file(this.text.getText(),this.file_name + ".txt");
         jFrame1.dispose();
     }//GEN-LAST:event_enregistrer_sousActionPerformed
@@ -613,16 +614,16 @@ public class GUI extends javax.swing.JFrame {
             if(reponse == JOptionPane.YES_OPTION){
                 this.enregistrer.doClick();
             }else if(reponse == JOptionPane.NO_OPTION){
-                //close the window
-                System.gc();
                 this.dispose();
             }
             else{
                 return;
             }
         }
-        System.gc();
+        //close only the window associate with the BlocNotes class
         this.dispose();
+
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
