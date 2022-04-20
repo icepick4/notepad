@@ -117,7 +117,12 @@ public class GUI extends javax.swing.JFrame {
         barre_etat_check = new javax.swing.JCheckBoxMenuItem();
 
         file_chooser_open_jframe.setTitle("Ouvrir");
-
+        //cant see directory
+        file_chooser_open.setFileSelectionMode(javax.swing.JFileChooser.FILES_ONLY);
+        //can choose only one file
+        file_chooser_open.setMultiSelectionEnabled(false);
+        //filter for txt files
+        file_chooser_open.setFileFilter(new FileNameExtensionFilter("Fichier texte", "txt"));
         file_chooser_open.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 file_chooser_openActionPerformed(evt);
@@ -146,6 +151,9 @@ public class GUI extends javax.swing.JFrame {
         );
 
         file_chooser_save_jframe.setTitle("Enregistrer sous");
+        file_chooser_save.setFileSelectionMode(javax.swing.JFileChooser.FILES_ONLY);
+        file_chooser_save.setMultiSelectionEnabled(false);
+        file_chooser_save.setFileFilter(new FileNameExtensionFilter("Fichier texte", "txt"));
 
         javax.swing.GroupLayout file_chooser_save_jframeLayout = new javax.swing.GroupLayout(file_chooser_save_jframe.getContentPane());
         file_chooser_save_jframe.getContentPane().setLayout(file_chooser_save_jframeLayout);
@@ -674,10 +682,11 @@ public class GUI extends javax.swing.JFrame {
 
     private void nouveauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nouveauActionPerformed
         //if not saved, ask to save
-        if(this.file_text != this.text.getText() && !this.text.getText().equals("")){
+        if(!this.file_text.equals(this.text.getText()) && !this.text.getText().equals("")){
             int reponse = JOptionPane.showConfirmDialog(this, "Voulez-vous enregistrer votre fichier avant de créer un nouveau fichier ?", "Bloc-notes", JOptionPane.YES_NO_CANCEL_OPTION);
             if(reponse == JOptionPane.YES_OPTION){
                 this.enregistrer.doClick();
+                return;
             }else if(reponse == JOptionPane.NO_OPTION){
                 //vider text
                 this.text.setText("");
@@ -690,6 +699,9 @@ public class GUI extends javax.swing.JFrame {
         //vider text
         this.text.setText("");
         this.file_text = "";
+        this.file_name = null;
+        this.set_title();
+        
     }//GEN-LAST:event_nouveauActionPerformed
 
     private void annulerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_annulerActionPerformed
@@ -753,7 +765,7 @@ public class GUI extends javax.swing.JFrame {
         }else{
             //save file
             this.file_text = this.text.getText();
-            this.bloc_notes.save_existing_file(this.text.getText(),this.file_name);
+            this.bloc_notes.enregistrer(this.text.getText(),this.file_name);
         }
         this.set_title();
     }//GEN-LAST:event_enregistrerActionPerformed
@@ -775,9 +787,12 @@ public class GUI extends javax.swing.JFrame {
             file_chooser_open_jframe.dispose();
             return;
         }
-        this.file_name = file_chooser_save.getSelectedFile().getAbsolutePath();
-        this.set_title();
-        this.bloc_notes.save_existing_file(this.text.getText(),this.file_name + ".txt");
+        String temp_file_name = file_chooser_save.getSelectedFile().getAbsolutePath() + ".txt";
+        if(this.bloc_notes.enregistrer_sous(this.text.getText(),temp_file_name) == true){
+            this.file_text = this.text.getText();
+            this.file_name = temp_file_name;
+            this.set_title();
+        }
         file_chooser_open_jframe.dispose();
     }//GEN-LAST:event_enregistrer_sousActionPerformed
 
@@ -794,7 +809,7 @@ public class GUI extends javax.swing.JFrame {
             this.rechercher_precedent.setEnabled(false);
         }
 
-        if(this.text.getText() != this.file_text){
+        if(!this.text.getText().equals(this.file_text)){
             this.annuler.setEnabled(true);
         }else{
             this.annuler.setEnabled(false);
@@ -985,25 +1000,25 @@ public class GUI extends javax.swing.JFrame {
 
     public void set_title(){
         //get only the title of the file in this.file_name
-        String file_name;
+        String file_name_title;
         try{
             String[] file_name_split = this.file_name.split("\\\\");
-            file_name = file_name_split[file_name_split.length - 1];
+            file_name_title = file_name_split[file_name_split.length - 1];
             if(!this.text.getText().equals(this.file_text)){
-                setTitle("*" +file_name + " - Bloc-notes");
+                setTitle("*" +file_name_title + " - Bloc-notes");
             }
             else{
                 
-                setTitle(file_name + " - Bloc-notes");
+                setTitle(file_name_title + " - Bloc-notes");
             }
         }
         catch(NullPointerException e){
             //no file for the moment
-            file_name = "Sans titre";
+            file_name_title = "Sans titre";
             if(!this.text.getText().equals("") && this.file_name == null){
-                setTitle("*" + file_name + " - Bloc-notes");
+                setTitle("*" + file_name_title + " - Bloc-notes");
             }else{
-                setTitle(file_name + " - Bloc-notes");
+                setTitle(file_name_title + " - Bloc-notes");
             }
         }
     }

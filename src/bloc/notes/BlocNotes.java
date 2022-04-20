@@ -14,6 +14,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
+import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -68,8 +70,53 @@ public class BlocNotes {
         this.gui.set_text(text);
     }
 
-    public void save_existing_file(String text, String file_name) {
-        //create a File object with file name
+    public boolean enregistrer_sous(String text, String file_name) {
+        //get only the file name
+        String file = file_name;
+        file = file.substring(file.lastIndexOf("\\") + 1);
+        //create a File object with file name, check if it exists
+        File f = new File(file_name);
+        if (f.exists()) {
+            //open dialog to ask if you want to overwrite the file
+            int dialog_result = JOptionPane.showConfirmDialog(this.gui,  file + "existe déjà\nVoulez-vous le remplacer ?", "Bloc-notes - Aller à la ligne", JOptionPane.YES_NO_OPTION);
+
+            if (dialog_result == 0) {
+                //if yes, delete the file
+                f.delete();
+                //create a new file
+                f = new File(file_name);
+            } else {
+                //if no, return
+                return false;
+            }
+        }
+        //create a FileWriter object
+        FileOutputStream fos = null;
+        try {
+            fos = new FileOutputStream(f);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        //create a BufferedWriter object
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
+        //write the text in the file
+        try {
+            bw.write(text);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //close the file
+        try {
+            bw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        this.gui.set_text(text);
+        return true;
+    }
+
+    public void enregistrer(String text, String file_name) {
+        //create a File object with file name, check if it exists
         File f = new File(file_name);
         //create a FileWriter object
         FileOutputStream fos = null;
