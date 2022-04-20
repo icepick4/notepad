@@ -7,7 +7,6 @@ package bloc.notes;
 import java.awt.Font;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -30,6 +29,7 @@ public class GUI extends javax.swing.JFrame {
      */
     public GUI(BlocNotes bloc_notes) {
         this.bloc_notes = bloc_notes;
+        this.file_text = "";
         initComponents();
     }
     
@@ -410,7 +410,7 @@ public class GUI extends javax.swing.JFrame {
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Bloc-notes");
         setPreferredSize(new java.awt.Dimension(800, 600));
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -702,8 +702,25 @@ public class GUI extends javax.swing.JFrame {
 
 
     private void ouvrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ouvrirActionPerformed
-        // TODO add your handling code here:
+        //if not saved, ask to save
+        if(!this.file_text.equals(this.text.getText()) && !this.text.getText().equals("")){
+            int reponse = JOptionPane.showConfirmDialog(this, "Voulez-vous enregistrer votre fichier avant d'ouvrir un nouveau fichier ?", "Bloc-notes", JOptionPane.YES_NO_CANCEL_OPTION);
+            if(reponse == JOptionPane.YES_OPTION){
+                this.enregistrer.doClick();
+            }else if(reponse == JOptionPane.NO_OPTION){
+                //vider le text
+                this.text.setText("");
+                file_chooser_open_jframe.pack();
+                file_chooser_open_jframe.setLocationRelativeTo(null);
+                file_chooser_open_jframe.setVisible(true);
+            }
+            else{
+                //cancel
+                return;
+            }
+        }
         file_chooser_open_jframe.pack();
+        file_chooser_open_jframe.setLocationRelativeTo(null);
         file_chooser_open_jframe.setVisible(true);
     }//GEN-LAST:event_ouvrirActionPerformed
 
@@ -735,6 +752,7 @@ public class GUI extends javax.swing.JFrame {
             this.enregistrer_sous.doClick();
         }else{
             //save file
+            this.file_text = this.text.getText();
             this.bloc_notes.save_existing_file(this.text.getText(),this.file_name);
         }
         this.set_title();
@@ -966,37 +984,44 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_couperActionPerformed
 
     public void set_title(){
-        //check if the text is empty
-        if(!this.text.getText().equals("") && this.file_name == null){
-            setTitle("*Sans titre - Bloc-notes");
-        }else if(this.file_name != null){
+        //get only the title of the file in this.file_name
+        String file_name;
+        try{
+            String[] file_name_split = this.file_name.split("\\\\");
+            file_name = file_name_split[file_name_split.length - 1];
             if(!this.text.getText().equals(this.file_text)){
-                setTitle("*" +this.file_name + ".txt" + " - Bloc-notes");
+                setTitle("*" +file_name + " - Bloc-notes");
             }
             else{
-                //get only the title of the file in this.file_name
-                String[] file_name_split = this.file_name.split("\\\\");
-                String file_name = file_name_split[file_name_split.length - 1];
+                
                 setTitle(file_name + " - Bloc-notes");
             }
-        }else{
-            setTitle("Sans titre - Bloc-notes");
+        }
+        catch(NullPointerException e){
+            //no file for the moment
+            file_name = "Sans titre";
+            if(!this.text.getText().equals("") && this.file_name == null){
+                setTitle("*" + file_name + " - Bloc-notes");
+            }else{
+                setTitle(file_name + " - Bloc-notes");
+            }
         }
     }
 
     public void close_window(){
-        if(this.file_text != this.text.getText() && !this.text.getText().equals("")){
+        //if not saved, ask to save
+        if(!this.file_text.equals(this.text.getText()) && !this.text.getText().equals("")){
             int reponse = JOptionPane.showConfirmDialog(this, "Voulez-vous enregistrer votre fichier avant de fermer la fenêtre ?", "Bloc-notes", JOptionPane.YES_NO_CANCEL_OPTION);
             if(reponse == JOptionPane.YES_OPTION){
                 this.enregistrer.doClick();
             }else if(reponse == JOptionPane.NO_OPTION){
-                this.dispose();
+                this.setDefaultCloseOperation(EXIT_ON_CLOSE);
             }
             else{
+                this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
                 return;
             }
         }
-        this.dispose();
     }
 
     public void rechercher_suivant(String text, boolean casse, boolean retour_ligne){
