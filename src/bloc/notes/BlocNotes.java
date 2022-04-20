@@ -18,12 +18,21 @@ import javax.swing.JOptionPane;
 
 
 /**
- *
+ *  Cette classe représente le bloc Notes.
+ *  Elle permet de gérer les enregistrements, les ouvertures.
+ *  Elle permet de gérer les notes.
  * @author Remi JARA
+ * @version 1.0
  */
 public class BlocNotes {
+    /**
+     *  Le gui du bloc Notes qui permet de gérer l'affichage.
+     */
     private GUI gui;
 
+    /**
+     * Constructeur de la classe BlocNotes.
+     */
     public BlocNotes() {
         gui = new GUI(this);
         gui.setVisible(true);
@@ -36,6 +45,11 @@ public class BlocNotes {
         BlocNotes bloc_notes = new BlocNotes();
     }
 
+    
+    /**
+     * Permet d'ouvrir un fichier.
+     * @param file Le fichier à ouvrir
+     */
     public void openFile(String file) {
         //create a File object with file name
         File f = new File(file);
@@ -70,6 +84,13 @@ public class BlocNotes {
         this.gui.set_text(text);
     }
 
+    
+    /**
+     * Permet d'enregistrer un fichier.
+     * @param text Contient le text de {@link GUI#text}.
+     * @param file_name Contient le nom du fichier à enregistrer {@link GUI#file_name}.
+     * @return Retourne true si on overwrite le fichier, false sinon.
+     */
     public boolean enregistrer_sous(String text, String file_name) {
         //get only the file name
         String file = file_name;
@@ -78,7 +99,7 @@ public class BlocNotes {
         File f = new File(file_name);
         if (f.exists()) {
             //open dialog to ask if you want to overwrite the file
-            int dialog_result = JOptionPane.showConfirmDialog(this.gui,  file + "existe déjà\nVoulez-vous le remplacer ?", "Bloc-notes - Aller à la ligne", JOptionPane.YES_NO_OPTION);
+            int dialog_result = JOptionPane.showConfirmDialog(this.gui,  file + "existe déjà.\nVoulez-vous le remplacer ?", "Bloc-notes - Aller à la ligne", JOptionPane.YES_NO_OPTION);
 
             if (dialog_result == 0) {
                 //if yes, delete the file
@@ -115,6 +136,12 @@ public class BlocNotes {
         return true;
     }
 
+    
+    /**
+     * Permet d'enregistrer un fichier.
+     * @param text Contient le text de {@link GUI#text}.
+     * @param file_name Contient le nom du fichier à enregistrer {@link GUI#file_name}. (fichier déjà existant)
+     */
     public void enregistrer(String text, String file_name) {
         //create a File object with file name, check if it exists
         File f = new File(file_name);

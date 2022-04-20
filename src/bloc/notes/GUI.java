@@ -19,22 +19,32 @@ import javax.swing.text.BadLocationException;
 
 /**
  *
- * @author Remi
+ * @author Remi JARA
  */
 public class GUI extends javax.swing.JFrame {
+    /**
+     * Le nom du fichier actuel
+     */
     private String file_name;
+    /**
+     * Le contenu du text (du fichier ouvert ou enregistré)
+     */
     private String file_text;
+    /**
+     * Le bloc Notes qui permet de gérer les enregistrements, les ouvertures.
+     */
     private BlocNotes bloc_notes;
+    /**
+     * Le presse papier
+     */
     private String clipboard;
-    private String last_text;
-    private boolean little_window;
     /**
      * Creates new form GUI
+     * @param bloc_notes Le bloc Notes qui permet de gérer les enregistrements, les ouvertures.
      */
     public GUI(BlocNotes bloc_notes) {
         this.bloc_notes = bloc_notes;
         this.file_text = "";
-        this.little_window = false;
         //set icon of the frame
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/bloc/notes/note_pad.png")).getImage());
         initLookAndFeel("Windows");
@@ -42,6 +52,10 @@ public class GUI extends javax.swing.JFrame {
         this.set_barre_etat();
     }
 
+    
+    /** 
+     * @param laf La nouvelle laf à appliquer
+     */
     private static void initLookAndFeel(String laf){
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -55,10 +69,21 @@ public class GUI extends javax.swing.JFrame {
         }
     }
     
+    
+    /** 
+     * Retourne le nom du fichier provenant de {@link #file_name}.
+     * @return String
+     * 
+     */
     public String get_file_name(){
         return this.file_name;
     }
 
+    
+    /** 
+     * Met en place le texte et le nom du fichier (init uniquement)
+     * @param text Le texte à mettre dans {@link #text}
+     */
     public void set_text(String text){
         this.file_text = text;
         this.text.setText(text);
@@ -190,7 +215,8 @@ public class GUI extends javax.swing.JFrame {
         );
 
         atteindre_jframe.setTitle("Atteindre");
-        atteindre_jframe.setResizable(false);
+        atteindre_jframe.setResizable(true);
+        atteindre_jframe.setPreferredSize(new java.awt.Dimension(250, 150));
 
         atteindre_input.setText("");
         atteindre_input.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -744,7 +770,6 @@ public class GUI extends javax.swing.JFrame {
         this.text.selectAll();
     }//GEN-LAST:event_annulerActionPerformed
 
-
     private void ouvrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ouvrirActionPerformed
         //if not saved, ask to save
         if(!this.file_text.equals(this.text.getText()) && !this.text.getText().equals("")){
@@ -900,7 +925,6 @@ public class GUI extends javax.swing.JFrame {
         this.atteindre_jframe.setLocationRelativeTo(this);
         this.atteindre_jframe.setAlwaysOnTop(true);
         this.atteindre_jframe.setVisible(true);
-
     }//GEN-LAST:event_atteindreActionPerformed
 
     private void atteindre_annulerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atteindre_annulerActionPerformed
@@ -929,6 +953,7 @@ public class GUI extends javax.swing.JFrame {
             if(text.equals("")){
                 this.atteindre_input.setText("");
             }else{
+                this.atteindre_jframe.setAlwaysOnTop(false);
                 JOptionPane.showMessageDialog(this, "Le numéro de ligne doit être un nombre entier", "Bloc-notes - Aller à la ligne", JOptionPane.ERROR_MESSAGE);
                 this.atteindre_input.setText(text.substring(0, text.length() - 1));
             }
@@ -1056,11 +1081,11 @@ public class GUI extends javax.swing.JFrame {
 
         //set a responive layout on barre_etat to fit all jlabels
         this.barre_etat.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
-
-
-
     }//GEN-LAST:event_formComponentResized
 
+    /**
+     * Met à jour le titre en fonction du nom du fichier et s'il est enregistrer ou non
+     */
     public void set_title(){
         //get only the title of the file in this.file_name
         String file_name_title;
@@ -1086,6 +1111,10 @@ public class GUI extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Met à jour la barre d'état (position du curseur et zoom)
+     *
+     */
     public void set_barre_etat(){
         int font_size = this.text.getFont().getSize();
         int pourcentage = font_size * 5;
@@ -1104,6 +1133,9 @@ public class GUI extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * vérifie si on peut fermer la fenêtre
+     */
     public void close_window(){
         //if not saved, ask to save
         if(!this.file_text.equals(this.text.getText()) && !this.text.getText().equals("")){
@@ -1124,6 +1156,13 @@ public class GUI extends javax.swing.JFrame {
         this.dispose();
     }
 
+    
+    /** 
+     * Sélectionne le suivant si la recherche aboutit
+     * @param text le texte recherché
+     * @param casse true si la recherche est sensible à la casse
+     * @param retour_ligne true si on doit retourner à la ligne
+     */
     public void rechercher_suivant(String text, boolean casse, boolean retour_ligne){
         int index = 0;
         //check if the text contains the searched text
@@ -1172,6 +1211,13 @@ public class GUI extends javax.swing.JFrame {
         this.remplacer_jframe.setAlwaysOnTop(true);
     }
 
+    
+    /** 
+     * Sélectionne le précédent si la recherche aboutit
+     * @param text le texte recherché
+     * @param casse true si la recherche est sensible à la casse
+     * @param retour_ligne true si on doit retourner à la ligne
+     */
     public void rechercher_precedent(String text, boolean casse, boolean retour_ligne){
         int index = 0;
         String recherche = this.rechercher_input.getText();
@@ -1208,6 +1254,9 @@ public class GUI extends javax.swing.JFrame {
         this.rechercher_jframe.setAlwaysOnTop(true);
     }
 
+    /**
+     * Lance la recherche soit {@link #rechercher_suivant(String, boolean, boolean) rechercher_suivant} soit {@link #rechercher_precedent(String, boolean, boolean) rechercher_precedent} en fonction de {@link #haut_rb} et {@link #bas_rb bas_rb}
+     */
     public void rechercher(){
         boolean bas = this.bas_rb.isSelected();
         if(bas){
@@ -1219,71 +1268,270 @@ public class GUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    /**
+     * Menu affichage
+     */
     private javax.swing.JMenu affichage_menu;
+    /**
+     * Menu item pour annuler
+     */
     private javax.swing.JMenuItem annuler;
+    /**
+     * Menu item pour lancer le menu de la foncionnalité atteindre {@link #atteindre_jframe atteindre_jframe}
+     */
     private javax.swing.JMenuItem atteindre;
+    /**
+     * Bouton pour annuler la fonctionnalié {@link #atteindre_jframe atteindre_jframe}
+     */    
     private javax.swing.JButton atteindre_annuler;
+    /**
+     * Bouton pour lancer la fonctionnalité {@link #atteindre_jframe atteindre_jframe}
+     */
     private javax.swing.JButton atteindre_bouton;
+    /**
+     * Input pour la fonctionnalité {@link #atteindre_jframe atteindre_jframe}
+     * type : int
+     */
     private javax.swing.JTextField atteindre_input;
+    /**
+     * JFrame pour la fonctionnalité {@link #atteindre_jframe atteindre_jframe}
+     */
     private javax.swing.JFrame atteindre_jframe;
+    /**
+     * Label pour la barre d'état
+     */
     private javax.swing.JLabel barre_etat;
+    /**
+     * Check box qui définit si on affiche la {@link #barre_etat barre_etat}
+     */
     private javax.swing.JCheckBoxMenuItem barre_etat_check;
+    /**
+     * Radio bouton pour la foncionnalité {@link #rechercher_jframe rechercher_jframe}
+     */
     private javax.swing.JRadioButton bas_rb;
+    /**
+     * Menu item pour coller le contenu de {@link #clipboard clipboard} dans {@link #text text}
+     */
     private javax.swing.JMenuItem coller;
+    /**
+     * Menu item pour copier le contenu sélectionné de {@link #text text} dans {@link #clipboard clipboard}
+     */
     private javax.swing.JMenuItem copier;
+    /**
+     * Menu item pour couper le contenu sélectionné de {@link #text text} dans {@link #clipboard clipboard}
+     */
     private javax.swing.JMenuItem couper;
+    /**
+     * Menu item pour lancer la fonctionnalité Date/Heure
+     */
     private javax.swing.JMenuItem date_heure;
+    /**
+     * Label de direction de la fenêtre {@link #rechercher_jframe rechercher_jframe}
+     */
     private javax.swing.JLabel direction_label;
+    /**
+     * Menu edition
+     */
     private javax.swing.JMenu edition_menu;
+    /**
+     * Menu item pour enregistrer le contenu de {@link #text text} dans le fichier {@link #file_name file_name}
+     */
     private javax.swing.JMenuItem enregistrer;
+    /**
+     * Menu item pour enregistrer le contenu de {@link #text text} dans un nouveau fichier
+     */
     private javax.swing.JMenuItem enregistrer_sous;
+    /**
+     * Menu fichier
+     */
     private javax.swing.JMenu fichier_menu;
+    /**
+     * File chooser pour ouvrir un fichier
+     */
     private javax.swing.JFileChooser file_chooser_open;
+    /**
+     * fenêtre de {@link #file_chooser_open file_chooser_open}
+     */
     private javax.swing.JFrame file_chooser_open_jframe;
+    /**
+     * File chooser pour enregistrer un fichier
+     */
     private javax.swing.JFileChooser file_chooser_save;
+    /**
+     * fenêtre de {@link #file_chooser_save file_chooser_save}
+     */
     private javax.swing.JFrame file_chooser_save_jframe;
+    /**
+     * Menu format
+     */
     private javax.swing.JMenu format_menu;
+    /**
+     * Radio bouton pour la foncionnalité {@link #rechercher_jframe rechercher_jframe}
+     */
     private javax.swing.JRadioButton haut_rb;
+    /**
+     * Bar de menu
+     */
     private javax.swing.JMenuBar jMenuBar1;
+    /**
+     * Bar de scroll pour {@link #text text}
+     */
     private javax.swing.JScrollPane jScrollPane1;
+    /**
+     * séparateur
+     */
     private javax.swing.JPopupMenu.Separator jSeparator2;
+    /**
+     * séparateur
+     */
     private javax.swing.JPopupMenu.Separator jSeparator3;
+    /**
+     * séparateur
+     */
     private javax.swing.JPopupMenu.Separator jSeparator4;
+    /**
+     * Label pour la fonctionnalité {@link #atteindre_jframe atteindre_jframe}
+     */
     private javax.swing.JLabel label_atteindre;
+    /**
+     * Menu item pour faire un nouveau fichier
+     */
     private javax.swing.JMenuItem nouveau;
+    /**
+     * Menu item pour créer un nouveau {@link BlocNotes}
+     */
     private javax.swing.JMenuItem nouvelle_fenetre;
+    /**
+     * Menu item pour ouvrir un fichier
+     */
     private javax.swing.JMenuItem ouvrir;
+    /**
+     * Menu item pour quitter le {@link BlocNotes}
+     */
     private javax.swing.JMenuItem quitter;
+    /**
+     * Menu item pour lancer la foncionnalité rechercher {@link #rechercher_jframe rechercher_jframe}
+     */
     private javax.swing.JMenuItem rechercher;
+    /**
+     * Bouton de la fenêtre {@link #rechercher_jframe rechercher_jframe} pour annuler
+     */
     private javax.swing.JButton rechercher_annuler;
+    /**
+     * Check box pour la fonctionnalité {@link #rechercher_jframe rechercher_jframe} pour gérer la casse
+     */
     private javax.swing.JCheckBox rechercher_casse;
+    /**
+     * Group de radio bouton pour la fonctionnalité {@link #rechercher_jframe rechercher_jframe} et gérer la direction
+     */
     private javax.swing.ButtonGroup rechercher_group_rb;
+    /**
+     * L'input de la recherche
+     */
     private javax.swing.JTextField rechercher_input;
+    /**
+     * Fenêtre de recherche
+     */
     private javax.swing.JFrame rechercher_jframe;
+    /**
+     * Label pour la fonctionnalité {@link #rechercher_jframe rechercher_jframe}
+     */
     private javax.swing.JLabel rechercher_label;
+    /**
+     * Menu item pour lancer directement la fonctionnalité rechercher {@link #rechercher_jframe rechercher_jframe} en allant vers le haut
+     */
     private javax.swing.JMenuItem rechercher_precedent;
+    /**
+     * Check box pour définir si on revient à la première occurence ou non lors de la recherche avec {@link #rechercher_jframe rechercher_jframe}
+     */
     private javax.swing.JCheckBox rechercher_retour_ligne;
+    /**
+     * Menu item pour lancer directement la fonctionnalité rechercher {@link #rechercher_jframe rechercher_jframe} en allant vers le bas
+     */
     private javax.swing.JMenuItem rechercher_suivant;
+    /**
+     * Bouton pour lancer la recherche de la fonctionnalité {@link #rechercher_jframe rechercher_jframe}
+     */
     private javax.swing.JButton rechercher_suivant_btn;
+    /**
+     * Menu item pour lancer la fenêtre de la fonctionnalité {@link #remplacer_jframe remplacer_jframe}
+     */
     private javax.swing.JMenuItem remplacer;
+    /**
+     * Bouton pour annuler la fonctionnalité {@link #remplacer_jframe remplacer_jframe}
+     */
     private javax.swing.JButton remplacer_annuler1;
+    /**
+     * Bouton pour lancer la fonctionnalité de {@link #remplacer_jframe remplacer_jframe}
+     */
     private javax.swing.JButton remplacer_btn;
+    /**
+     * Check box qui définit si la recherche pour le remplacement est sensible à la casse
+     */
     private javax.swing.JCheckBox remplacer_casse;
+    /**
+     * Input de la recherche pour le remplacement (valeur de départ)
+     */
     private javax.swing.JTextField remplacer_input;
+    /**
+     * Input de la recherche pour le remplacement (valeur d'arrivée)
+     */
     private javax.swing.JTextField remplacer_input2;
+    /**
+     * Fenêtre de remplacement
+     */
     private javax.swing.JFrame remplacer_jframe;
+    /**
+     * Label pour la fonctionnalité {@link #remplacer_jframe remplacer_jframe}
+     */
     private javax.swing.JLabel remplacer_label;
+    /**
+     * Label pour la fonctionnalité {@link #remplacer_jframe remplacer_jframe}
+     */
     private javax.swing.JLabel remplacer_label2;
+    /**
+     * Check box qui définit si on revient à la première occurence ou non lors de la recherche avec {@link #remplacer_jframe remplacer_jframe}
+     */
     private javax.swing.JCheckBox remplacer_retour_ligne;
+    /**
+     * Bouton pour aller à l'occurence suivant lors du remplacement avec {@link #remplacer_jframe remplacer_jframe}
+     */
     private javax.swing.JButton remplacer_suivant_btn1;
+    /**
+     * Bouton pour remplacer directement toute les occurences avec {@link #remplacer_jframe remplacer_jframe}
+     */
     private javax.swing.JButton remplacer_tout_btn;
+    /**
+     * Menu item pour définir si le retour à la ligne doit être automatique ou non
+     */
     private javax.swing.JCheckBoxMenuItem retour_ligne_auto;
+    /**
+     * Menu item qui sélectionne tout le contenu de {@link #text text}
+     */
     private javax.swing.JMenuItem selectionner_tout;
+    /**
+     * Menu item pour supprimer le contenu sélectionner de {@link #text text}
+     */
     private javax.swing.JMenuItem suppr;
+    /**
+     * Zone de texte du {@link BlocNotes}
+     */
     private javax.swing.JTextArea text;
+    /**
+     * Menu item pour zoomer (diminuer la taille de la police)
+     */
     private javax.swing.JMenuItem zoom_arriere;
+    /**
+     * Menu item pour zoomer (augmenter la taille de la police)
+     */
     private javax.swing.JMenuItem zoom_avant;
+    /**
+     * Menu item pour mettre la taille de la police par défaut
+     */
     private javax.swing.JMenuItem zoom_defaut;
+    /**
+     * Menu du zoom
+     */
     private javax.swing.JMenu zoom_menu;
     // End of variables declaration//GEN-END:variables
 }
