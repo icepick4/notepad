@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Remi
+ * @author Remi JARA
  */
 public class BlocNotes {
     private GUI gui;
