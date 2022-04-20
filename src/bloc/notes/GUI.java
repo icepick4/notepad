@@ -67,6 +67,17 @@ public class GUI extends javax.swing.JFrame {
         rechercher_casse = new javax.swing.JCheckBox();
         rechercher_retour_ligne = new javax.swing.JCheckBox();
         rechercher_group_rb = new javax.swing.ButtonGroup();
+        remplacer_jframe = new javax.swing.JFrame();
+        remplacer_label = new javax.swing.JLabel();
+        remplacer_input = new javax.swing.JTextField();
+        remplacer_suivant_btn1 = new javax.swing.JButton();
+        remplacer_annuler1 = new javax.swing.JButton();
+        remplacer_casse = new javax.swing.JCheckBox();
+        remplacer_retour_ligne = new javax.swing.JCheckBox();
+        remplacer_label2 = new javax.swing.JLabel();
+        remplacer_input2 = new javax.swing.JTextField();
+        remplacer_btn = new javax.swing.JButton();
+        remplacer_tout_btn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         text = new javax.swing.JTextArea();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -293,6 +304,102 @@ public class GUI extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        remplacer_jframe.setAlwaysOnTop(true);
+
+        remplacer_label.setText("Rechercher :");
+
+        remplacer_suivant_btn1.setText("Suivant");
+        remplacer_suivant_btn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                remplacer_suivant_btn1ActionPerformed(evt);
+            }
+        });
+
+        remplacer_annuler1.setText("Annuler");
+        remplacer_annuler1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                remplacer_annuler1ActionPerformed(evt);
+            }
+        });
+
+        remplacer_casse.setText("Respecter la casse");
+
+        remplacer_retour_ligne.setText("Retour à la ligne");
+
+        remplacer_label2.setText("Remplacer par :");
+
+        remplacer_btn.setText("Remplacer");
+        remplacer_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                remplacer_btnActionPerformed(evt);
+            }
+        });
+
+        remplacer_tout_btn.setText("Remplacer tout");
+        remplacer_tout_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                remplacer_tout_btnActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout remplacer_jframeLayout = new javax.swing.GroupLayout(remplacer_jframe.getContentPane());
+        remplacer_jframe.getContentPane().setLayout(remplacer_jframeLayout);
+        remplacer_jframeLayout.setHorizontalGroup(
+            remplacer_jframeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(remplacer_jframeLayout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addGroup(remplacer_jframeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(remplacer_casse)
+                    .addComponent(remplacer_retour_ligne))
+                .addGap(175, 175, 175)
+                .addGroup(remplacer_jframeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(remplacer_tout_btn)
+                    .addComponent(remplacer_annuler1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGroup(remplacer_jframeLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(remplacer_jframeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(remplacer_label2)
+                    .addComponent(remplacer_label))
+                .addGap(18, 18, 18)
+                .addGroup(remplacer_jframeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(remplacer_input2, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(remplacer_input, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(remplacer_jframeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(remplacer_suivant_btn1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(remplacer_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
+        remplacer_jframeLayout.setVerticalGroup(
+            remplacer_jframeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(remplacer_jframeLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(remplacer_jframeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(remplacer_label)
+                    .addComponent(remplacer_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(remplacer_suivant_btn1))
+                .addGroup(remplacer_jframeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(remplacer_jframeLayout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addGroup(remplacer_jframeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(remplacer_label2)
+                            .addComponent(remplacer_input2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(remplacer_jframeLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(remplacer_btn)))
+                .addGroup(remplacer_jframeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(remplacer_jframeLayout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(remplacer_casse)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(remplacer_retour_ligne))
+                    .addGroup(remplacer_jframeLayout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(remplacer_tout_btn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(remplacer_annuler1)))
+                .addContainerGap(20, Short.MAX_VALUE))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Bloc-notes");
         setPreferredSize(new java.awt.Dimension(800, 600));
@@ -438,6 +545,11 @@ public class GUI extends javax.swing.JFrame {
 
         remplacer.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         remplacer.setText("Remplacer");
+        remplacer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                remplacerActionPerformed(evt);
+            }
+        });
         edition_menu.add(remplacer);
 
         atteindre.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.CTRL_DOWN_MASK));
@@ -725,13 +837,50 @@ public class GUI extends javax.swing.JFrame {
         this.rechercher_jframe.dispose();
     }//GEN-LAST:event_rechercher_annulerActionPerformed
 
-    private void rechercher_suivantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rechercher_suivantActionPerformed
-        this.rechercher_suivant();
+    private void rechercher_suivantActionPerformed(java.awt.event.ActionEvent evt) {
+//GEN-FIRST:event_rechercher_suivantActionPerformed
+        this.rechercher_suivant(this.rechercher_input.getText(), this.rechercher_casse.isSelected(), this.rechercher_retour_ligne.isSelected());
     }//GEN-LAST:event_rechercher_suivantActionPerformed
 
     private void rechercher_precedentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rechercher_precedentActionPerformed
-        this.rechercher_precedent();
+        this.rechercher_precedent(this.rechercher_input.getText(), this.rechercher_casse.isSelected(), this.rechercher_retour_ligne.isSelected());
     }//GEN-LAST:event_rechercher_precedentActionPerformed
+
+    private void remplacer_suivant_btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_remplacer_suivant_btn1ActionPerformed
+        this.rechercher_suivant(this.remplacer_input.getText(), this.remplacer_casse.isSelected(), this.remplacer_retour_ligne.isSelected());
+    }//GEN-LAST:event_remplacer_suivant_btn1ActionPerformed
+
+    private void remplacer_annuler1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_remplacer_annuler1ActionPerformed
+        this.remplacer_jframe.dispose();
+    }//GEN-LAST:event_remplacer_annuler1ActionPerformed
+
+    private void remplacer_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_remplacer_btnActionPerformed
+        String replace = this.remplacer_input2.getText();
+        //if no text is selected, launch this.rechercher_suivant()
+        if(this.text.getSelectedText() == null){
+            this.rechercher_suivant(this.remplacer_input.getText(), this.remplacer_casse.isSelected(), this.remplacer_retour_ligne.isSelected());
+
+        }else{
+            //replace the text
+            this.text.replaceSelection(replace);
+            //launch this.rechercher_suivant()
+            this.rechercher_suivant(this.remplacer_input.getText(), this.remplacer_casse.isSelected(), this.remplacer_retour_ligne.isSelected());
+        }
+
+    }//GEN-LAST:event_remplacer_btnActionPerformed
+
+    private void remplacer_tout_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_remplacer_tout_btnActionPerformed
+        //replace all occurences of this.remplacer_input.getText() with this.remplacer_input2.getText()
+        this.text.setText(this.text.getText().replaceAll(this.remplacer_input.getText(), this.remplacer_input2.getText()));
+    }//GEN-LAST:event_remplacer_tout_btnActionPerformed
+
+    private void remplacerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_remplacerActionPerformed
+        //open remplacer_jframe
+        this.remplacer_jframe.pack();
+        //put the window in the middle of Jframe
+        this.remplacer_jframe.setLocationRelativeTo(this);
+        this.remplacer_jframe.setVisible(true);
+    }//GEN-LAST:event_remplacerActionPerformed
 
     public void set_title(){
         //check if the text is empty
@@ -767,10 +916,7 @@ public class GUI extends javax.swing.JFrame {
         this.dispose();
     }
 
-    public void rechercher_suivant(){
-        String text = this.rechercher_input.getText();
-        boolean casse = this.rechercher_casse.isSelected();
-        boolean retour_ligne = this.rechercher_retour_ligne.isSelected();
+    public void rechercher_suivant(String text, boolean casse, boolean retour_ligne){
         int index = 0;
         if(!casse){
             index = this.text.getText().toLowerCase().indexOf(text.toLowerCase(), this.text.getCaretPosition());
@@ -778,21 +924,34 @@ public class GUI extends javax.swing.JFrame {
         else{
             index = this.text.getText().indexOf(text, this.text.getCaretPosition());
         }
+
         if(index != -1){
             this.text.setCaretPosition(index);
             this.text.select(index, index + text.length());
-        }else{
-            //put the messagedialog over the window
-            this.rechercher_jframe.setAlwaysOnTop(false);
-            JOptionPane.showMessageDialog(this, "La recherche n'a pas abouti", "Bloc-notes - Rechercher", JOptionPane.ERROR_MESSAGE);
+        }else if (!retour_ligne){
+            //check if it is rechercher of remplacer
+            String recherche = "";
+            if(this.rechercher_jframe.isVisible()){
+                recherche = this.rechercher_input.getText();
+                this.rechercher_jframe.setAlwaysOnTop(false);
+            }
+            else{
+                recherche = this.remplacer_input.getText();
+                this.remplacer_jframe.setAlwaysOnTop(false);
+            }
+            JOptionPane.showMessageDialog(this, "Impossible de trouver " + "'" + recherche + "'", "Bloc-notes - Rechercher", JOptionPane.ERROR_MESSAGE);
         }
+        else{
+            //go to the beginning of the text
+            this.text.setCaretPosition(0);
+        }
+
+
         this.rechercher_jframe.setAlwaysOnTop(true);
+        this.remplacer_jframe.setAlwaysOnTop(true);
     }
 
-    public void rechercher_precedent(){
-        String text = this.rechercher_input.getText();
-        boolean casse = this.rechercher_casse.isSelected();
-        boolean retour_ligne = this.rechercher_retour_ligne.isSelected();
+    public void rechercher_precedent(String text, boolean casse, boolean retour_ligne){
         int index = 0;
         //remove the text after the cursor
         String sous_texte = this.text.getText().substring(0,this.text.getCaretPosition()-1);
@@ -803,24 +962,30 @@ public class GUI extends javax.swing.JFrame {
         else{
             index = sous_texte.lastIndexOf(text);
         }
+
         if(index != -1){
             this.text.setCaretPosition(index);
             this.text.select(index, index + text.length());
-        }else{
-            //put the messagedialog over the window
+        }else if (!retour_ligne){
+            String recherche = this.rechercher_input.getText();
             this.rechercher_jframe.setAlwaysOnTop(false);
-            JOptionPane.showMessageDialog(this, "La recherche n'a pas abouti", "Bloc-notes - Rechercher", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Impossible de trouver " + "'" + recherche + "'", "Bloc-notes - Rechercher", JOptionPane.ERROR_MESSAGE);
         }
+        else{
+            //set the caret after the text
+            this.text.setCaretPosition(this.text.getText().length());
+        }
+
         this.rechercher_jframe.setAlwaysOnTop(true);
     }
 
     public void rechercher(){
         boolean bas = this.bas_rb.isSelected();
         if(bas){
-            this.rechercher_suivant();
+            this.rechercher_suivant(this.rechercher_input.getText(), this.rechercher_casse.isSelected(), this.rechercher_retour_ligne.isSelected());
         }
         else{
-            this.rechercher_precedent();
+            this.rechercher_precedent(this.rechercher_input.getText(), this.rechercher_casse.isSelected(), this.rechercher_retour_ligne.isSelected());
         }
     }
 
@@ -871,6 +1036,17 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem rechercher_suivant;
     private javax.swing.JButton rechercher_suivant_btn;
     private javax.swing.JMenuItem remplacer;
+    private javax.swing.JButton remplacer_annuler1;
+    private javax.swing.JButton remplacer_btn;
+    private javax.swing.JCheckBox remplacer_casse;
+    private javax.swing.JTextField remplacer_input;
+    private javax.swing.JTextField remplacer_input2;
+    private javax.swing.JFrame remplacer_jframe;
+    private javax.swing.JLabel remplacer_label;
+    private javax.swing.JLabel remplacer_label2;
+    private javax.swing.JCheckBox remplacer_retour_ligne;
+    private javax.swing.JButton remplacer_suivant_btn1;
+    private javax.swing.JButton remplacer_tout_btn;
     private javax.swing.JCheckBoxMenuItem retour_ligne_auto;
     private javax.swing.JMenuItem selectionner_tout;
     private javax.swing.JMenuItem suppr;
