@@ -30,7 +30,24 @@ public class GUI extends javax.swing.JFrame {
     public GUI(BlocNotes bloc_notes) {
         this.bloc_notes = bloc_notes;
         this.file_text = "";
+        //set icon of the frame
+        setIconImage(new javax.swing.ImageIcon(getClass().getResource("/bloc/notes/note_pad.png")).getImage());
+        initLookAndFeel("Windows");
         initComponents();
+        this.set_barre_etat();
+    }
+
+    private static void initLookAndFeel(String laf){
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if (laf.equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
     }
     
     public String get_file_name(){
@@ -83,6 +100,7 @@ public class GUI extends javax.swing.JFrame {
         remplacer_tout_btn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         text = new javax.swing.JTextArea();
+        barre_etat = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         fichier_menu = new javax.swing.JMenu();
         nouveau = new javax.swing.JMenuItem();
@@ -117,12 +135,7 @@ public class GUI extends javax.swing.JFrame {
         barre_etat_check = new javax.swing.JCheckBoxMenuItem();
 
         file_chooser_open_jframe.setTitle("Ouvrir");
-        //cant see directory
-        file_chooser_open.setFileSelectionMode(javax.swing.JFileChooser.FILES_ONLY);
-        //can choose only one file
-        file_chooser_open.setMultiSelectionEnabled(false);
-        //filter for txt files
-        file_chooser_open.setFileFilter(new FileNameExtensionFilter("Fichier texte", "txt"));
+
         file_chooser_open.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 file_chooser_openActionPerformed(evt);
@@ -151,9 +164,6 @@ public class GUI extends javax.swing.JFrame {
         );
 
         file_chooser_save_jframe.setTitle("Enregistrer sous");
-        file_chooser_save.setFileSelectionMode(javax.swing.JFileChooser.FILES_ONLY);
-        file_chooser_save.setMultiSelectionEnabled(false);
-        file_chooser_save.setFileFilter(new FileNameExtensionFilter("Fichier texte", "txt"));
 
         javax.swing.GroupLayout file_chooser_save_jframeLayout = new javax.swing.GroupLayout(file_chooser_save_jframe.getContentPane());
         file_chooser_save_jframe.getContentPane().setLayout(file_chooser_save_jframeLayout);
@@ -418,7 +428,7 @@ public class GUI extends javax.swing.JFrame {
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Bloc-notes");
         setPreferredSize(new java.awt.Dimension(800, 600));
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -430,6 +440,11 @@ public class GUI extends javax.swing.JFrame {
         text.setColumns(20);
         text.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         text.setRows(5);
+        text.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                textCaretUpdate(evt);
+            }
+        });
         text.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 textMouseReleased(evt);
@@ -443,6 +458,10 @@ public class GUI extends javax.swing.JFrame {
         jScrollPane1.setViewportView(text);
 
         getContentPane().add(jScrollPane1, java.awt.BorderLayout.CENTER);
+
+        barre_etat.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        barre_etat.setText("Ligne 1 - Colonne 1");
+        getContentPane().add(barre_etat, java.awt.BorderLayout.PAGE_END);
 
         fichier_menu.setText("Fichier");
 
@@ -671,6 +690,11 @@ public class GUI extends javax.swing.JFrame {
 
         barre_etat_check.setSelected(true);
         barre_etat_check.setText("Barre d'état");
+        barre_etat_check.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                barre_etat_checkActionPerformed(evt);
+            }
+        });
         affichage_menu.add(barre_etat_check);
 
         jMenuBar1.add(affichage_menu);
@@ -842,21 +866,23 @@ public class GUI extends javax.swing.JFrame {
 
     private void zoom_avantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_zoom_avantActionPerformed
         //increase font size of text (max : 60)
-        if(this.text.getFont().getSize() < 60){
+        if(this.text.getFont().getSize() < 100){
             this.text.setFont(new Font(this.text.getFont().getName(),this.text.getFont().getStyle(),this.text.getFont().getSize() + 2));
         }
-
+        this.set_barre_etat();
     }//GEN-LAST:event_zoom_avantActionPerformed
 
     private void zoom_arriereActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_zoom_arriereActionPerformed
         //decrease font size of text (min : 5)
-        if(this.text.getFont().getSize() > 5){
+        if(this.text.getFont().getSize() > 2){
             this.text.setFont(new Font(this.text.getFont().getName(),this.text.getFont().getStyle(),this.text.getFont().getSize() - 2));
         }
+        this.set_barre_etat();
     }//GEN-LAST:event_zoom_arriereActionPerformed
 
     private void zoom_defautActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_zoom_defautActionPerformed
         this.text.setFont(new Font(this.text.getFont().getName(),this.text.getFont().getStyle(),20));
+        this.set_barre_etat();
     }//GEN-LAST:event_zoom_defautActionPerformed
 
     private void atteindreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atteindreActionPerformed
@@ -998,6 +1024,15 @@ public class GUI extends javax.swing.JFrame {
         this.text.replaceSelection("");
     }//GEN-LAST:event_couperActionPerformed
 
+    private void barre_etat_checkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_barre_etat_checkActionPerformed
+        this.barre_etat.setVisible(this.barre_etat_check.isSelected());
+    }//GEN-LAST:event_barre_etat_checkActionPerformed
+
+    private void textCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_textCaretUpdate
+        //update the status bar
+        this.set_barre_etat();
+    }//GEN-LAST:event_textCaretUpdate
+
     public void set_title(){
         //get only the title of the file in this.file_name
         String file_name_title;
@@ -1023,20 +1058,42 @@ public class GUI extends javax.swing.JFrame {
         }
     }
 
+    public void set_barre_etat(){
+        int font_size = this.text.getFont().getSize();
+        int pourcentage = font_size * 5;
+        try {
+            this.barre_etat.setText(
+                        "Ligne " + 
+                        (this.text.getLineOfOffset(this.text.getCaretPosition()) + 1) +
+                        " - Colonne " + 
+                        (this.text.getCaretPosition() - 
+                        this.text.getLineStartOffset(this.text.getLineOfOffset(this.text.getCaretPosition())) + 1) +
+                        " - " + "Zoom" +
+                        " - " + pourcentage + "%"
+                        );
+        } catch (BadLocationException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void close_window(){
         //if not saved, ask to save
         if(!this.file_text.equals(this.text.getText()) && !this.text.getText().equals("")){
             int reponse = JOptionPane.showConfirmDialog(this, "Voulez-vous enregistrer votre fichier avant de fermer la fenêtre ?", "Bloc-notes", JOptionPane.YES_NO_CANCEL_OPTION);
             if(reponse == JOptionPane.YES_OPTION){
                 this.enregistrer.doClick();
+                return;
             }else if(reponse == JOptionPane.NO_OPTION){
                 this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+                this.dispose();
             }
             else{
                 this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
                 return;
             }
         }
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.dispose();
     }
 
     public void rechercher_suivant(String text, boolean casse, boolean retour_ligne){
@@ -1141,6 +1198,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JButton atteindre_bouton;
     private javax.swing.JTextField atteindre_input;
     private javax.swing.JFrame atteindre_jframe;
+    private javax.swing.JLabel barre_etat;
     private javax.swing.JCheckBoxMenuItem barre_etat_check;
     private javax.swing.JRadioButton bas_rb;
     private javax.swing.JMenuItem coller;
