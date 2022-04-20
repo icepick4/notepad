@@ -3,6 +3,9 @@
 <Form version="1.8" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
     <Container class="javax.swing.JFrame" name="file_chooser_open_jframe">
+      <Properties>
+        <Property name="title" type="java.lang.String" value="Ouvrir"/>
+      </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -39,6 +42,9 @@
       </SubComponents>
     </Container>
     <Container class="javax.swing.JFrame" name="file_chooser_save_jframe">
+      <Properties>
+        <Property name="title" type="java.lang.String" value="Enregistrer sous"/>
+      </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -73,6 +79,7 @@
     </Container>
     <Container class="javax.swing.JFrame" name="atteindre_jframe">
       <Properties>
+        <Property name="title" type="java.lang.String" value="Atteindre"/>
         <Property name="resizable" type="boolean" value="false"/>
       </Properties>
 
@@ -155,6 +162,7 @@
     </Container>
     <Container class="javax.swing.JFrame" name="rechercher_jframe">
       <Properties>
+        <Property name="title" type="java.lang.String" value="Rechercher"/>
         <Property name="alwaysOnTop" type="boolean" value="true"/>
       </Properties>
 
@@ -287,6 +295,7 @@
     </Component>
     <Container class="javax.swing.JFrame" name="remplacer_jframe">
       <Properties>
+        <Property name="title" type="java.lang.String" value="Remplacer"/>
         <Property name="alwaysOnTop" type="boolean" value="true"/>
       </Properties>
 
@@ -294,73 +303,72 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="remplacer_casse" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="remplacer_retour_ligne" alignment="0" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="175" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="remplacer_tout_btn" min="-2" max="-2" attributes="0"/>
-                      <Component id="remplacer_annuler1" min="-2" pref="112" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-              <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="remplacer_label2" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="remplacer_label" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="remplacer_label2" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="remplacer_label" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="remplacer_input2" alignment="0" min="-2" pref="187" max="-2" attributes="0"/>
+                              <Component id="remplacer_input" alignment="0" min="-2" pref="187" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace pref="33" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="remplacer_btn" alignment="1" min="-2" pref="120" max="-2" attributes="0"/>
+                              <Component id="remplacer_suivant_btn1" alignment="1" min="-2" pref="120" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="remplacer_casse" min="-2" max="-2" attributes="0"/>
+                              <Component id="remplacer_retour_ligne" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="remplacer_annuler1" alignment="1" min="-2" pref="120" max="-2" attributes="0"/>
+                              <Component id="remplacer_tout_btn" alignment="1" min="-2" pref="120" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="remplacer_input2" alignment="0" min="-2" pref="187" max="-2" attributes="0"/>
-                      <Component id="remplacer_input" alignment="0" min="-2" pref="187" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="remplacer_suivant_btn1" min="-2" pref="112" max="-2" attributes="0"/>
-                      <Component id="remplacer_btn" min="-2" pref="112" max="-2" attributes="0"/>
-                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="remplacer_label" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="remplacer_input" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="remplacer_suivant_btn1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="remplacer_label" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="remplacer_input" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
                           <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="remplacer_label2" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="remplacer_input2" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="remplacer_btn" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                           <Component id="remplacer_casse" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="remplacer_retour_ligne" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                          <Component id="remplacer_suivant_btn1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="remplacer_btn" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Component id="remplacer_tout_btn" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="remplacer_annuler1" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="20" max="32767" attributes="0"/>
+                  <EmptySpace pref="12" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -526,6 +534,9 @@
                 <Property name="text" type="java.lang.String" value="Couper"/>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="couperActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="copier">
               <Properties>
@@ -535,6 +546,9 @@
                 <Property name="text" type="java.lang.String" value="Copier"/>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="copierActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="coller">
               <Properties>
@@ -543,6 +557,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Coller"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="collerActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="suppr">
               <Properties>
@@ -552,6 +569,9 @@
                 <Property name="text" type="java.lang.String" value="Supprimer"/>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="supprActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator4">
             </MenuItem>
@@ -759,6 +779,7 @@
             <Property name="rows" type="int" value="5"/>
           </Properties>
           <Events>
+            <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="textMouseReleased"/>
             <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="textKeyReleased"/>
           </Events>
         </Component>

@@ -26,6 +26,7 @@ public class BlocNotes {
         gui = new GUI(this);
         gui.setVisible(true);
     }
+
     /**
      * @param args the command line arguments
      */
@@ -93,13 +94,4 @@ public class BlocNotes {
         }
         this.gui.set_text(text);
     }
-
-
-
-
-        
-
-    
-
-    
 }

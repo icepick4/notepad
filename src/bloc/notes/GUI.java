@@ -7,6 +7,7 @@ package bloc.notes;
 import java.awt.Font;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -22,6 +23,8 @@ public class GUI extends javax.swing.JFrame {
     private String file_name;
     private String file_text;
     private BlocNotes bloc_notes;
+    private String clipboard;
+    private String last_text;
     /**
      * Creates new form GUI
      */
@@ -113,6 +116,8 @@ public class GUI extends javax.swing.JFrame {
         zoom_defaut = new javax.swing.JMenuItem();
         barre_etat_check = new javax.swing.JCheckBoxMenuItem();
 
+        file_chooser_open_jframe.setTitle("Ouvrir");
+
         file_chooser_open.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 file_chooser_openActionPerformed(evt);
@@ -140,6 +145,8 @@ public class GUI extends javax.swing.JFrame {
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
+        file_chooser_save_jframe.setTitle("Enregistrer sous");
+
         javax.swing.GroupLayout file_chooser_save_jframeLayout = new javax.swing.GroupLayout(file_chooser_save_jframe.getContentPane());
         file_chooser_save_jframe.getContentPane().setLayout(file_chooser_save_jframeLayout);
         file_chooser_save_jframeLayout.setHorizontalGroup(
@@ -161,6 +168,7 @@ public class GUI extends javax.swing.JFrame {
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
+        atteindre_jframe.setTitle("Atteindre");
         atteindre_jframe.setResizable(false);
 
         atteindre_input.setText("");
@@ -220,6 +228,7 @@ public class GUI extends javax.swing.JFrame {
                 .addGap(14, 14, 14))
         );
 
+        rechercher_jframe.setTitle("Rechercher");
         rechercher_jframe.setAlwaysOnTop(true);
 
         rechercher_label.setText("Rechercher :");
@@ -304,6 +313,7 @@ public class GUI extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        remplacer_jframe.setTitle("Remplacer");
         remplacer_jframe.setAlwaysOnTop(true);
 
         remplacer_label.setText("Rechercher :");
@@ -347,57 +357,57 @@ public class GUI extends javax.swing.JFrame {
         remplacer_jframeLayout.setHorizontalGroup(
             remplacer_jframeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(remplacer_jframeLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(remplacer_jframeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(remplacer_casse)
-                    .addComponent(remplacer_retour_ligne))
-                .addGap(175, 175, 175)
-                .addGroup(remplacer_jframeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(remplacer_tout_btn)
-                    .addComponent(remplacer_annuler1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
-            .addGroup(remplacer_jframeLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(remplacer_jframeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(remplacer_label2)
-                    .addComponent(remplacer_label))
-                .addGap(18, 18, 18)
-                .addGroup(remplacer_jframeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(remplacer_input2, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(remplacer_input, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(remplacer_jframeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(remplacer_suivant_btn1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(remplacer_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(remplacer_jframeLayout.createSequentialGroup()
+                        .addGroup(remplacer_jframeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(remplacer_label2)
+                            .addComponent(remplacer_label))
+                        .addGap(18, 18, 18)
+                        .addGroup(remplacer_jframeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(remplacer_input2, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(remplacer_input, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                        .addGroup(remplacer_jframeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(remplacer_btn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(remplacer_suivant_btn1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(remplacer_jframeLayout.createSequentialGroup()
+                        .addGroup(remplacer_jframeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(remplacer_casse)
+                            .addComponent(remplacer_retour_ligne))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(remplacer_jframeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(remplacer_annuler1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(remplacer_tout_btn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap())
         );
         remplacer_jframeLayout.setVerticalGroup(
             remplacer_jframeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(remplacer_jframeLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(remplacer_jframeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(remplacer_label)
-                    .addComponent(remplacer_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(remplacer_suivant_btn1))
                 .addGroup(remplacer_jframeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(remplacer_jframeLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(remplacer_jframeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(remplacer_label)
+                            .addComponent(remplacer_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(9, 9, 9)
                         .addGroup(remplacer_jframeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(remplacer_label2)
-                            .addComponent(remplacer_input2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(remplacer_jframeLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(remplacer_btn)))
-                .addGroup(remplacer_jframeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(remplacer_jframeLayout.createSequentialGroup()
-                        .addGap(15, 15, 15)
+                            .addComponent(remplacer_input2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(24, 24, 24)
                         .addComponent(remplacer_casse)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(remplacer_retour_ligne))
                     .addGroup(remplacer_jframeLayout.createSequentialGroup()
-                        .addGap(3, 3, 3)
+                        .addGap(18, 18, 18)
+                        .addComponent(remplacer_suivant_btn1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(remplacer_btn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(remplacer_tout_btn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(remplacer_annuler1)))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -412,6 +422,11 @@ public class GUI extends javax.swing.JFrame {
         text.setColumns(20);
         text.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         text.setRows(5);
+        text.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                textMouseReleased(evt);
+            }
+        });
         text.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 textKeyReleased(evt);
@@ -496,20 +511,40 @@ public class GUI extends javax.swing.JFrame {
         couper.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         couper.setText("Couper");
         couper.setEnabled(false);
+        couper.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                couperActionPerformed(evt);
+            }
+        });
         edition_menu.add(couper);
 
         copier.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         copier.setText("Copier");
         copier.setEnabled(false);
+        copier.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                copierActionPerformed(evt);
+            }
+        });
         edition_menu.add(copier);
 
         coller.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         coller.setText("Coller");
+        coller.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                collerActionPerformed(evt);
+            }
+        });
         edition_menu.add(coller);
 
         suppr.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_DELETE, 0));
         suppr.setText("Supprimer");
         suppr.setEnabled(false);
+        suppr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                supprActionPerformed(evt);
+            }
+        });
         edition_menu.add(suppr);
         edition_menu.add(jSeparator4);
 
@@ -658,8 +693,13 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_nouveauActionPerformed
 
     private void annulerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_annulerActionPerformed
-        // TODO add your handling code here:
+        //switch between last text and current text and select it
+        String last_text = this.text.getText();
+        this.text.setText(this.file_text);
+        this.file_text = last_text;
+        this.text.selectAll();
     }//GEN-LAST:event_annulerActionPerformed
+
 
     private void ouvrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ouvrirActionPerformed
         // TODO add your handling code here:
@@ -735,6 +775,12 @@ public class GUI extends javax.swing.JFrame {
             this.rechercher_suivant.setEnabled(false);
             this.rechercher_precedent.setEnabled(false);
         }
+
+        if(this.text.getText() != this.file_text){
+            this.annuler.setEnabled(true);
+        }else{
+            this.annuler.setEnabled(false);
+        }        
     }//GEN-LAST:event_textKeyReleased
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
@@ -882,6 +928,43 @@ public class GUI extends javax.swing.JFrame {
         this.remplacer_jframe.setVisible(true);
     }//GEN-LAST:event_remplacerActionPerformed
 
+    private void textMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_textMouseReleased
+        //check if some text is selected
+        if(this.text.getSelectedText() != null){
+            //enable the buttons
+            this.suppr.setEnabled(true);
+            this.copier.setEnabled(true);
+            this.couper.setEnabled(true);
+        } 
+        else {
+            //disable the buttons
+            this.suppr.setEnabled(false);
+            this.copier.setEnabled(false);
+            this.couper.setEnabled(false);
+        }
+    }//GEN-LAST:event_textMouseReleased
+
+    private void supprActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supprActionPerformed
+        //delete the selected text
+        this.text.replaceSelection("");
+    }//GEN-LAST:event_supprActionPerformed
+
+    private void copierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_copierActionPerformed
+        //copy the selected text
+        this.clipboard = this.text.getSelectedText();
+    }//GEN-LAST:event_copierActionPerformed
+
+    private void collerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_collerActionPerformed
+        //paste the content of the clipboard at the cursor
+        this.text.insert(this.clipboard, this.text.getCaretPosition());
+    }//GEN-LAST:event_collerActionPerformed
+
+    private void couperActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_couperActionPerformed
+        //copy the selected text and delete it
+        this.clipboard = this.text.getSelectedText();
+        this.text.replaceSelection("");
+    }//GEN-LAST:event_couperActionPerformed
+
     public void set_title(){
         //check if the text is empty
         if(!this.text.getText().equals("") && this.file_name == null){
@@ -918,6 +1001,20 @@ public class GUI extends javax.swing.JFrame {
 
     public void rechercher_suivant(String text, boolean casse, boolean retour_ligne){
         int index = 0;
+        //check if the text contains the searched text
+        if(!this.text.getText().contains(text)){
+            String recherche = "";
+            if(this.rechercher_jframe.isVisible()){
+                recherche = this.rechercher_input.getText();
+                this.rechercher_jframe.setAlwaysOnTop(false);
+            }
+            else{
+                recherche = this.remplacer_input.getText();
+                this.remplacer_jframe.setAlwaysOnTop(false);
+            }
+            JOptionPane.showMessageDialog(this, "Impossible de trouver " + "'" + recherche + "'", "Bloc-notes - Rechercher", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         if(!casse){
             index = this.text.getText().toLowerCase().indexOf(text.toLowerCase(), this.text.getCaretPosition());
         }
@@ -929,7 +1026,6 @@ public class GUI extends javax.swing.JFrame {
             this.text.setCaretPosition(index);
             this.text.select(index, index + text.length());
         }else if (!retour_ligne){
-            //check if it is rechercher of remplacer
             String recherche = "";
             if(this.rechercher_jframe.isVisible()){
                 recherche = this.rechercher_input.getText();
@@ -953,8 +1049,17 @@ public class GUI extends javax.swing.JFrame {
 
     public void rechercher_precedent(String text, boolean casse, boolean retour_ligne){
         int index = 0;
+        String recherche = this.rechercher_input.getText();
+        String sous_texte;
         //remove the text after the cursor
-        String sous_texte = this.text.getText().substring(0,this.text.getCaretPosition()-1);
+        try{
+            sous_texte = this.text.getText().substring(0,this.text.getCaretPosition()  - 1);
+        }
+        catch(StringIndexOutOfBoundsException e){
+            this.rechercher_jframe.setAlwaysOnTop(false);
+            JOptionPane.showMessageDialog(this, "Impossible de trouver " + "'" + recherche + "'", "Bloc-notes - Rechercher", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         //search in the text before the cursor
         if(!casse){
             index = sous_texte.toLowerCase().lastIndexOf(text.toLowerCase());
@@ -965,9 +1070,8 @@ public class GUI extends javax.swing.JFrame {
 
         if(index != -1){
             this.text.setCaretPosition(index);
-            this.text.select(index, index + text.length());
+            this.text.select(index, index + text.length() );
         }else if (!retour_ligne){
-            String recherche = this.rechercher_input.getText();
             this.rechercher_jframe.setAlwaysOnTop(false);
             JOptionPane.showMessageDialog(this, "Impossible de trouver " + "'" + recherche + "'", "Bloc-notes - Rechercher", JOptionPane.ERROR_MESSAGE);
         }
