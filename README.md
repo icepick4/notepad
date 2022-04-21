@@ -3,7 +3,7 @@ Clone of windows's notepad
 
 ## Usage :
 
-* You can simply run the file [executable](bloc-notes.jar)
+* You can simply run the file [executable](notepad.jar)
 * Or run mannualy the file [Bloc-Notes](/src/bloc/notes/BlocNotes.java)
 
 ## Screenshots :
