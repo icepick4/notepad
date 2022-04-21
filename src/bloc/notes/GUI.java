@@ -46,7 +46,7 @@ public class GUI extends javax.swing.JFrame {
         this.bloc_notes = bloc_notes;
         this.file_text = "";
         //set icon of the frame
-        setIconImage(new javax.swing.ImageIcon(getClass().getResource("/bloc/notes/note_pad.png")).getImage());
+        this.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/bloc/notes/note_pad.png")).getImage());
         initLookAndFeel("Windows");
         initComponents();
         this.set_barre_etat();
@@ -163,7 +163,12 @@ public class GUI extends javax.swing.JFrame {
         barre_etat_check = new javax.swing.JCheckBoxMenuItem();
 
         file_chooser_open_jframe.setTitle("Ouvrir");
-
+        //see only txt files in the file chooser
+        file_chooser_open.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        file_chooser_open.setAcceptAllFileFilterUsed(false);
+        file_chooser_open.setFileFilter(new FileNameExtensionFilter("Fichier texte", "txt"));
+        //set the icon of the frame
+        file_chooser_open_jframe.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/bloc/notes/note_pad.png")).getImage());
         file_chooser_open.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 file_chooser_openActionPerformed(evt);
@@ -192,7 +197,7 @@ public class GUI extends javax.swing.JFrame {
         );
 
         file_chooser_save_jframe.setTitle("Enregistrer sous");
-
+        file_chooser_save_jframe.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/bloc/notes/note_pad.png")).getImage());
         javax.swing.GroupLayout file_chooser_save_jframeLayout = new javax.swing.GroupLayout(file_chooser_save_jframe.getContentPane());
         file_chooser_save_jframe.getContentPane().setLayout(file_chooser_save_jframeLayout);
         file_chooser_save_jframeLayout.setHorizontalGroup(
@@ -217,7 +222,8 @@ public class GUI extends javax.swing.JFrame {
         atteindre_jframe.setTitle("Atteindre");
         atteindre_jframe.setResizable(true);
         atteindre_jframe.setPreferredSize(new java.awt.Dimension(250, 150));
-
+        //set no icon at all to atteindre_jframe
+        atteindre_jframe.setIconImage(null);
         atteindre_input.setText("");
         atteindre_input.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -277,7 +283,7 @@ public class GUI extends javax.swing.JFrame {
 
         rechercher_jframe.setTitle("Rechercher");
         rechercher_jframe.setAlwaysOnTop(true);
-
+        rechercher_jframe.setIconImage(null);
         rechercher_label.setText("Rechercher :");
 
         rechercher_suivant_btn.setText("Suivant");
@@ -362,7 +368,7 @@ public class GUI extends javax.swing.JFrame {
 
         remplacer_jframe.setTitle("Remplacer");
         remplacer_jframe.setAlwaysOnTop(true);
-
+        remplacer_jframe.setIconImage(null);
         remplacer_label.setText("Rechercher :");
 
         remplacer_suivant_btn1.setText("Suivant");
