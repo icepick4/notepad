@@ -1150,7 +1150,7 @@ public class GUI extends javax.swing.JFrame {
                 this.enregistrer.doClick();
                 return;
             }else if(reponse == JOptionPane.NO_OPTION){
-                this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+                this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
                 this.dispose();
             }
             else{
@@ -1158,7 +1158,7 @@ public class GUI extends javax.swing.JFrame {
                 return;
             }
         }
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         this.dispose();
     }
 
