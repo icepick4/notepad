@@ -10,9 +10,14 @@ import java.awt.FlowLayout;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import javax.swing.AbstractAction;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.KeyStroke;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.text.BadLocationException;
 
@@ -37,7 +42,7 @@ public class GUI extends javax.swing.JFrame {
     /**
      * Le presse papier
      */
-    private String clipboard;
+    private String clipboard = "";
     /**
      * Creates new form GUI
      * @param bloc_notes Le bloc Notes qui permet de gérer les enregistrements, les ouvertures.
@@ -480,6 +485,48 @@ public class GUI extends javax.swing.JFrame {
         text.setColumns(20);
         text.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         text.setRows(5);
+        text.getInputMap().put(KeyStroke.getKeyStroke("control C"), "copy");
+        text.getActionMap().put("copy", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                copierActionPerformed(e);
+            }
+        });
+        text.getInputMap().put(KeyStroke.getKeyStroke("control V"), "paste");
+        text.getActionMap().put("paste", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                collerActionPerformed(e);
+            }
+        });
+        text.getInputMap().put(KeyStroke.getKeyStroke("control X"), "cut");
+        text.getActionMap().put("cut", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                couperActionPerformed(e);
+            }
+        });
+        text.getInputMap().put(KeyStroke.getKeyStroke("DELETE"), "supprimer");
+        text.getActionMap().put("supprimer", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                supprActionPerformed(e);
+            }
+        });
+        text.getInputMap().put(KeyStroke.getKeyStroke("control H"), "remplacer");
+        text.getActionMap().put("remplacer", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                remplacerActionPerformed(e);
+            }
+        });
+        text.getInputMap().put(KeyStroke.getKeyStroke("control A"), "all");
+        text.getActionMap().put("all", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                selectionner_toutActionPerformed(e);
+            }
+        });
         text.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
                 textCaretUpdate(evt);
@@ -575,44 +622,26 @@ public class GUI extends javax.swing.JFrame {
         edition_menu.add(annuler);
         edition_menu.add(jSeparator3);
 
-        couper.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        couper.setAccelerator(KeyStroke.getKeyStroke("control X"));
         couper.setText("Couper");
         couper.setEnabled(false);
-        couper.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                couperActionPerformed(evt);
-            }
-        });
         edition_menu.add(couper);
 
-        copier.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        copier.setAccelerator(KeyStroke.getKeyStroke("control C"));
         copier.setText("Copier");
         copier.setEnabled(false);
-        copier.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                copierActionPerformed(evt);
-            }
-        });
         edition_menu.add(copier);
 
-        coller.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        coller.setAccelerator(KeyStroke.getKeyStroke("control V"));
         coller.setText("Coller");
-        coller.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                collerActionPerformed(evt);
-            }
-        });
+        coller.setEnabled(false);
         edition_menu.add(coller);
 
-        suppr.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_DELETE, 0));
+        suppr.setAccelerator(KeyStroke.getKeyStroke("DELETE"));
         suppr.setText("Supprimer");
         suppr.setEnabled(false);
-        suppr.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                supprActionPerformed(evt);
-            }
-        });
         edition_menu.add(suppr);
+
         edition_menu.add(jSeparator4);
 
         rechercher.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.CTRL_DOWN_MASK));
@@ -645,13 +674,8 @@ public class GUI extends javax.swing.JFrame {
         });
         edition_menu.add(rechercher_precedent);
 
-        remplacer.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        remplacer.setAccelerator(KeyStroke.getKeyStroke("control H"));
         remplacer.setText("Remplacer");
-        remplacer.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                remplacerActionPerformed(evt);
-            }
-        });
         edition_menu.add(remplacer);
 
         atteindre.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.CTRL_DOWN_MASK));
@@ -663,13 +687,8 @@ public class GUI extends javax.swing.JFrame {
         });
         edition_menu.add(atteindre);
 
-        selectionner_tout.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        selectionner_tout.setAccelerator(KeyStroke.getKeyStroke("control A"));
         selectionner_tout.setText("Sélectionner tout");
-        selectionner_tout.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                selectionner_toutActionPerformed(evt);
-            }
-        });
         edition_menu.add(selectionner_tout);
 
         date_heure.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F5, 0));
@@ -783,8 +802,6 @@ public class GUI extends javax.swing.JFrame {
             if(reponse == JOptionPane.YES_OPTION){
                 this.enregistrer.doClick();
             }else if(reponse == JOptionPane.NO_OPTION){
-                //vider le text
-                this.text.setText("");
                 file_chooser_open_jframe.pack();
                 file_chooser_open_jframe.setLocationRelativeTo(null);
                 file_chooser_open_jframe.setVisible(true);
@@ -805,6 +822,7 @@ public class GUI extends javax.swing.JFrame {
             file_chooser_open_jframe.dispose();
             return;
         }
+        this.text.setText("");
         this.file_name = file_chooser_open.getSelectedFile().getAbsolutePath();
         this.set_title();
         if(file_chooser_open.getSelectedFile() == null){
@@ -876,7 +894,10 @@ public class GUI extends javax.swing.JFrame {
             this.annuler.setEnabled(true);
         }else{
             this.annuler.setEnabled(false);
-        }        
+        } 
+        if(!this.clipboard.equals("")){
+            this.coller.setEnabled(true);
+        }  
     }//GEN-LAST:event_textKeyReleased
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
@@ -893,6 +914,7 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_retour_ligne_autoStateChanged
 
     private void selectionner_toutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectionner_toutActionPerformed
+        System.out.print("gnfgdjklrfj");
         this.text.selectAll();
     }//GEN-LAST:event_selectionner_toutActionPerformed
 
@@ -1050,10 +1072,16 @@ public class GUI extends javax.swing.JFrame {
 
     private void copierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_copierActionPerformed
         //copy the selected text
-        this.clipboard = this.text.getSelectedText();
+        String s = "";
+        if (this.text.getSelectedText() != null) {
+            s = this.text.getSelectedText();
+        }
+        this.clipboard = s;
+        this.coller.setEnabled(true);
     }//GEN-LAST:event_copierActionPerformed
 
     private void collerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_collerActionPerformed
+        System.out.print("je colle" + this.clipboard);
         //paste the content of the clipboard at the cursor
         this.text.insert(this.clipboard, this.text.getCaretPosition());
     }//GEN-LAST:event_collerActionPerformed
@@ -1062,6 +1090,7 @@ public class GUI extends javax.swing.JFrame {
         //copy the selected text and delete it
         this.clipboard = this.text.getSelectedText();
         this.text.replaceSelection("");
+        this.coller.setEnabled(true);
     }//GEN-LAST:event_couperActionPerformed
 
     private void barre_etat_checkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_barre_etat_checkActionPerformed
