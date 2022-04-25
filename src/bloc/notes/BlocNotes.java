@@ -42,7 +42,7 @@ public class BlocNotes {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        BlocNotes bloc_notes = new BlocNotes();
+        new BlocNotes();
     }
 
     

@@ -1015,7 +1015,7 @@ public class GUI extends javax.swing.JFrame {
 
     private void nouvelle_fenetreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nouvelle_fenetreActionPerformed
         //init a new BlocNotes window
-        BlocNotes new_bloc_notes = new BlocNotes();
+        new BlocNotes();
     }//GEN-LAST:event_nouvelle_fenetreActionPerformed
 
     private void enregistrerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enregistrerActionPerformed
