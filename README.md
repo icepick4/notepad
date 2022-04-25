@@ -12,7 +12,6 @@ Application at launch :
 
 ![Screenshot_2](https://user-images.githubusercontent.com/82316285/164344240-0323d8aa-4a88-4e92-8265-d26d799d258d.png)  
 
-
 Searching text :
 
 ![Screenshot_3](https://user-images.githubusercontent.com/82316285/164344341-74c63f9d-e3d6-4400-a189-801e2520e301.png)  
@@ -20,7 +19,11 @@ Searching text :
 
 Replacing text :
 
-![Screenshot_4](https://user-images.githubusercontent.com/82316285/164344342-9c38d7bc-86f0-4e3f-b067-8261b12aef56.png)  
+![Screenshot_4](https://user-images.githubusercontent.com/82316285/164344342-9c38d7bc-86f0-4e3f-b067-8261b12aef56.png)
+
+(bonus feature) You can custom with local font + choose Bg color and Fg color
+
+![Screenshot_3](https://user-images.githubusercontent.com/82316285/165050148-1cc0bb4d-bea2-44a2-95b8-7dbdd64c1257.png)
 
 
 ### Unimplemented features :
