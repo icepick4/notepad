@@ -214,7 +214,6 @@ public class GUI extends javax.swing.JFrame {
         file_chooser_open_font.setAcceptAllFileFilterUsed(false);
         file_chooser_open_font.setFileFilter(new FileNameExtensionFilter("Fichier ttf", "ttf"));
         file_chooser_open_font.setFileFilter(new FileNameExtensionFilter("Fichier otf", "otf"));
-        file_chooser_open_font.setFileFilter(new FileNameExtensionFilter("Fichier woff", "woff"));
         //set the icon of the frame
         file_chooser_open_font_jframe.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/bloc/notes/note_pad.png")).getImage());
         file_chooser_open_font.addActionListener(new java.awt.event.ActionListener() {
