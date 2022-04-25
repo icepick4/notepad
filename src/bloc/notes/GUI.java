@@ -8,6 +8,7 @@ import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Color;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -16,6 +17,8 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.KeyStroke;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import java.awt.event.ActionEvent;
 import java.io.File;
@@ -148,8 +151,10 @@ public class GUI extends javax.swing.JFrame {
         remplacer_tout_btn = new javax.swing.JButton();
         file_chooser_open_font_jframe = new javax.swing.JFrame();
         file_chooser_open_font = new javax.swing.JFileChooser();
-        couleur__jframe = new javax.swing.JFrame();
-        couleur_chooser = new javax.swing.JColorChooser();
+        couleur_font_jframe = new javax.swing.JFrame();
+        couleur_fond_jframe = new javax.swing.JFrame();
+        couleur_font_chooser = new javax.swing.JColorChooser();
+        couleur_fond_chooser = new javax.swing.JColorChooser();
         jScrollPane1 = new javax.swing.JScrollPane();
         text = new javax.swing.JTextArea();
         barre_etat = new javax.swing.JLabel();
@@ -187,7 +192,7 @@ public class GUI extends javax.swing.JFrame {
         barre_etat_check = new javax.swing.JCheckBoxMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         choisir_font = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        couleur_font = new javax.swing.JMenuItem();
         couleur_fond = new javax.swing.JMenuItem();
 
         file_chooser_open_jframe.setTitle("Ouvrir");
@@ -217,6 +222,26 @@ public class GUI extends javax.swing.JFrame {
                 file_chooser_open_fontActionPerformed(evt);
             }
         });
+
+        couleur_font_jframe.setTitle("Choisir une couleur de police");
+        couleur_font_jframe.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/bloc/notes/note_pad.png")).getImage());
+        couleur_font_chooser.setColor(Color.BLACK);
+        couleur_font_chooser.getSelectionModel().addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                couleur_chooser_fontActionPerformed(e);
+            }
+        });
+        couleur_fond_jframe.setTitle("Choisir une couleur de fond");
+        couleur_fond_jframe.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/bloc/notes/note_pad.png")).getImage());
+        couleur_fond_chooser.setColor(Color.BLACK);
+        couleur_fond_chooser.getSelectionModel().addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                couleur_chooser_fondActionPerformed(e);
+            }
+        });
+
 
         javax.swing.GroupLayout file_chooser_open_jframeLayout = new javax.swing.GroupLayout(file_chooser_open_jframe.getContentPane());
         file_chooser_open_jframe.getContentPane().setLayout(file_chooser_open_jframeLayout);
@@ -257,6 +282,48 @@ public class GUI extends javax.swing.JFrame {
                 .addGroup(file_chooser_open_font_jframeLayout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(file_chooser_open_font, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        javax.swing.GroupLayout couleur_font_jframeLayout = new javax.swing.GroupLayout(couleur_font_jframe.getContentPane());
+        couleur_font_jframe.getContentPane().setLayout(couleur_font_jframeLayout);
+        couleur_font_jframeLayout.setHorizontalGroup(
+            couleur_font_jframeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 640, Short.MAX_VALUE)
+            .addGroup(couleur_font_jframeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(couleur_font_jframeLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(couleur_font_chooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        couleur_font_jframeLayout.setVerticalGroup(
+            couleur_font_jframeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 324, Short.MAX_VALUE)
+            .addGroup(couleur_font_jframeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(couleur_font_jframeLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(couleur_font_chooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        javax.swing.GroupLayout couleur_fond_jframeLayout = new javax.swing.GroupLayout(couleur_fond_jframe.getContentPane());
+        couleur_fond_jframe.getContentPane().setLayout(couleur_fond_jframeLayout);
+        couleur_fond_jframeLayout.setHorizontalGroup(
+            couleur_fond_jframeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 640, Short.MAX_VALUE)
+            .addGroup(couleur_fond_jframeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(couleur_fond_jframeLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(couleur_fond_chooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        couleur_fond_jframeLayout.setVerticalGroup(
+            couleur_fond_jframeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 324, Short.MAX_VALUE)
+            .addGroup(couleur_fond_jframeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(couleur_fond_jframeLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(couleur_fond_chooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
@@ -853,10 +920,20 @@ public class GUI extends javax.swing.JFrame {
         });
         affichage_menu.add(choisir_font);
 
-        jMenuItem1.setText("Couleur police");
-        affichage_menu.add(jMenuItem1);
+        couleur_font.setText("Couleur police");
+        couleur_font.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                couleur_fontActionPerformed(evt);
+            }
+        });
+        affichage_menu.add(couleur_font);
 
         couleur_fond.setText("Couleur de fond");
+        couleur_fond.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                couleur_fondActionPerformed(evt);
+            }
+        });
         affichage_menu.add(couleur_fond);
 
         jMenuBar1.add(affichage_menu);
@@ -1226,6 +1303,28 @@ public class GUI extends javax.swing.JFrame {
         file_chooser_open_font_jframe.setLocationRelativeTo(null);
         file_chooser_open_font_jframe.setVisible(true);
     }//GEN-LAST:event_choisir_fontActionPerformed
+
+    private void couleur_fontActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_choisir_fontActionPerformed
+        couleur_font_jframe.pack();
+        couleur_font_jframe.setLocationRelativeTo(null);
+        couleur_font_jframe.setVisible(true);
+    }
+
+    private void couleur_fondActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_choisir_fontActionPerformed
+        couleur_fond_jframe.pack();
+        couleur_fond_jframe.setLocationRelativeTo(null);
+        couleur_fond_jframe.setVisible(true);
+    }
+
+    private void couleur_chooser_fontActionPerformed(ChangeEvent evt) {//GEN-FIRST:event_couleur_chooserActionPerformed
+        //set the font color
+        this.text.setForeground(couleur_font_chooser.getColor());
+    }//GEN-LAST:event_couleur_chooserActionPerformed
+
+    private void couleur_chooser_fondActionPerformed(ChangeEvent evt) {//GEN-FIRST:event_couleur_chooserActionPerformed
+        //set the font color
+        this.text.setBackground(couleur_fond_chooser.getColor());
+    }//GEN-LAST:event_couleur_chooserActionPerformed
 
     private void file_chooser_open_fontActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_file_chooser_open_fontActionPerformed
         if(evt.getActionCommand().equals(javax.swing.JFileChooser.CANCEL_SELECTION)){
@@ -1712,12 +1811,14 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JMenu zoom_menu;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JMenuItem choisir_font;
-    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem couleur_font;
     private javax.swing.JMenuItem couleur_fond;
     private javax.swing.JFrame file_chooser_open_font_jframe;
     private javax.swing.JFileChooser file_chooser_open_font;
-    private javax.swing.JFrame couleur__jframe;
-    private javax.swing.JColorChooser couleur_chooser;
+    private javax.swing.JFrame couleur_font_jframe;
+    private javax.swing.JFrame couleur_fond_jframe;
+    private javax.swing.JColorChooser couleur_font_chooser;
+    private javax.swing.JColorChooser couleur_fond_chooser;
     // End of variables declaration//GEN-END:variables
     // End of variables declaration//GEN-END:variables
 }
