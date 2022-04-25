@@ -192,6 +192,7 @@ public class GUI extends javax.swing.JFrame {
         barre_etat_check = new javax.swing.JCheckBoxMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         choisir_font = new javax.swing.JMenuItem();
+        font_defaut = new javax.swing.JMenuItem();
         couleur_font = new javax.swing.JMenuItem();
         couleur_fond = new javax.swing.JMenuItem();
 
@@ -920,6 +921,14 @@ public class GUI extends javax.swing.JFrame {
         });
         affichage_menu.add(choisir_font);
 
+        font_defaut.setText("Police par défaut");
+        font_defaut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                font_defautActionPerformed(evt);
+            }
+        });
+        affichage_menu.add(font_defaut);
+
         couleur_font.setText("Couleur police");
         couleur_font.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1099,26 +1108,27 @@ public class GUI extends javax.swing.JFrame {
     private void date_heureActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_date_heureActionPerformed
         LocalDateTime currentTime = LocalDateTime.now();
         String time_stamp = currentTime.format(DateTimeFormatter.ofPattern("HH:mm dd/MM/yyyy"));
-        this.text.append(time_stamp);  
+        //insert time stamp in the text area at the cursor position
+        this.text.insert(time_stamp, this.text.getCaretPosition());
         this.set_title();      
     }//GEN-LAST:event_date_heureActionPerformed
 
     private void zoom_avantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_zoom_avantActionPerformed
         //increase font size of text (max : 60)
-        this.setZoom();
         if(this.zoom < 500){
             this.text.setFont(this.font.deriveFont((float) (this.zoom * 100.0 / 500 + 2)));
         }
         this.set_barre_etat();
+        this.setZoom();
     }//GEN-LAST:event_zoom_avantActionPerformed
 
     private void zoom_arriereActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_zoom_arriereActionPerformed
         //decrease font size of text (min : 5)
-        this.setZoom();
         if(this.zoom > 5){
             this.text.setFont(this.font.deriveFont((float) (this.zoom * 100.0 / 500 - 2)));
         }
         this.set_barre_etat();
+        this.setZoom();
     }//GEN-LAST:event_zoom_arriereActionPerformed
 
     private void zoom_defautActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_zoom_defautActionPerformed
@@ -1304,6 +1314,15 @@ public class GUI extends javax.swing.JFrame {
         file_chooser_open_font_jframe.setVisible(true);
     }//GEN-LAST:event_choisir_fontActionPerformed
 
+    private void font_defautActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_font_defautActionPerformed
+        //set the font to default
+        Font new_font = new Font("Arial", Font.PLAIN, 66);
+        this.font = new_font;
+        System.out.print(this.zoom * 100.0 / 500);
+        this.font = this.font.deriveFont((float) (this.zoom * 100.0 / 500));
+        this.text.setFont(this.font);
+        this.set_barre_etat();
+    }//GEN-LAST:event_font_defautActionPerformed
     private void couleur_fontActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_choisir_fontActionPerformed
         couleur_font_jframe.pack();
         couleur_font_jframe.setLocationRelativeTo(null);
@@ -1341,11 +1360,13 @@ public class GUI extends javax.swing.JFrame {
         }
         this.font = new_font;
         //set the new font
-        this.text.setFont(this.font.deriveFont((float) (zoom * 100.0 / 500)));
+        this.font = this.font.deriveFont((float) (this.zoom * 100.0 / 500));
+        this.text.setFont(this.font);
         if(file_chooser_open_font.getSelectedFile() == null){
             file_chooser_open_font_jframe.dispose();
             return;
         }
+        this.set_barre_etat();
         file_chooser_open_font_jframe.dispose();
     }//GEN-LAST:event_file_chooser_open_fontActionPerformed
 
@@ -1407,6 +1428,7 @@ public class GUI extends javax.swing.JFrame {
         } catch (BadLocationException e) {
             e.printStackTrace();
         }
+        this.barre_etat.setText(this.barre_etat.getText() + " - " + this.font.getName());
     }
 
     /**
@@ -1833,6 +1855,10 @@ public class GUI extends javax.swing.JFrame {
      * File Chooser pour choisir la police
      */
     private javax.swing.JFileChooser file_chooser_open_font;
+    /**
+     * Rétablir la police par défaut
+     */
+    private javax.swing.JMenuItem font_defaut;
     /**
      * JFrame du Color Chooser pour choisir la couleur de police
      */
