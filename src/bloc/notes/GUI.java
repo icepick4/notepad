@@ -611,6 +611,7 @@ public class GUI extends javax.swing.JFrame {
         text.setColumns(20);
         text.setFont(this.font); // NOI18N
         text.setRows(5);
+        text.setBorder(javax.swing.BorderFactory.createEmptyBorder());
         text.getInputMap().put(KeyStroke.getKeyStroke("control C"), "copy");
         text.getActionMap().put("copy", new AbstractAction() {
             @Override
@@ -732,7 +733,7 @@ public class GUI extends javax.swing.JFrame {
             }
         });
         fichier_menu.add(quitter);
-
+        jMenuBar1.setBorder(javax.swing.BorderFactory.createEmptyBorder());
         jMenuBar1.add(fichier_menu);
 
         edition_menu.setText("Edition");
@@ -1809,15 +1810,45 @@ public class GUI extends javax.swing.JFrame {
      * Menu du zoom
      */
     private javax.swing.JMenu zoom_menu;
+    /**
+     * Séparateur pour le menu affichage
+     */
     private javax.swing.JPopupMenu.Separator jSeparator1;
+    /**
+     * Menu Item pour choisir la police
+     */
     private javax.swing.JMenuItem choisir_font;
+    /**
+     * Menu Item pour choisir la couleur de la police
+     */
     private javax.swing.JMenuItem couleur_font;
+    /**
+     * Menu Item pour choisir la couleur de fond
+     */
     private javax.swing.JMenuItem couleur_fond;
+    /**
+     * JFrame du File Chooser pour choisir la police
+     */
     private javax.swing.JFrame file_chooser_open_font_jframe;
+    /**
+     * File Chooser pour choisir la police
+     */
     private javax.swing.JFileChooser file_chooser_open_font;
+    /**
+     * JFrame du Color Chooser pour choisir la couleur de police
+     */
     private javax.swing.JFrame couleur_font_jframe;
+    /**
+     * JFrame du Color Chooser pour choisir la couleur de fond
+     */
     private javax.swing.JFrame couleur_fond_jframe;
+    /**
+     * Color Chooser pour choisir la couleur de police
+     */
     private javax.swing.JColorChooser couleur_font_chooser;
+    /**
+     * Color Chooser pour choisir la couleur de fond
+     */
     private javax.swing.JColorChooser couleur_fond_chooser;
     // End of variables declaration//GEN-END:variables
     // End of variables declaration//GEN-END:variables
