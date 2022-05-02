@@ -1013,13 +1013,16 @@ public class GUI extends javax.swing.JFrame {
         }
         this.text.setText("");
         this.file_name = file_chooser_open.getSelectedFile().getAbsolutePath();
-        this.set_title();
         if(file_chooser_open.getSelectedFile() == null){
             file_chooser_open_jframe.dispose();
             return;
         }
-        bloc_notes.openFile(this.file_name);
-        file_chooser_open_jframe.dispose();
+
+        boolean success = bloc_notes.openFile(this.file_name);
+        if (success){
+            file_chooser_open_jframe.dispose();
+            this.set_title();
+        }
     }                                           
 
     private void nouvelle_fenetreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nouvelle_fenetreActionPerformed

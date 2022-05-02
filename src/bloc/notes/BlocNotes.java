@@ -50,7 +50,7 @@ public class BlocNotes {
      * Permet d'ouvrir un fichier.
      * @param file Le fichier à ouvrir
      */
-    public void openFile(String file) {
+    public boolean openFile(String file) {
         //create a File object with file name
         File f = new File(file);
         //create a FileReader object
@@ -59,7 +59,7 @@ public class BlocNotes {
             fr = new FileInputStream(f);
         } catch (FileNotFoundException e) {
             JOptionPane.showMessageDialog(null, "Le fichier n'existe pas", "Erreur", JOptionPane.ERROR_MESSAGE);
-            return;
+            return false;
         }
         InputStreamReader isr = new InputStreamReader(fr, StandardCharsets.UTF_8);
         //create a BufferedReader object
@@ -82,6 +82,7 @@ public class BlocNotes {
         }
         //set the text in the text area
         this.gui.set_text(text);
+        return true;
     }
 
     
