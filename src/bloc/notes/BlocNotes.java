@@ -58,9 +58,9 @@ public class BlocNotes {
         try {
             fr = new FileInputStream(f);
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Le fichier n'existe pas", "Erreur", JOptionPane.ERROR_MESSAGE);
+            return;
         }
-        
         InputStreamReader isr = new InputStreamReader(fr, StandardCharsets.UTF_8);
         //create a BufferedReader object
         BufferedReader br = new BufferedReader(isr);
